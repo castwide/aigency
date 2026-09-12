@@ -1,0 +1,6 @@
+name: an Aigent
+openai_api_base: https://api.openai.com/v1
+openai_api_key: CHANGE_ME
+# max_tokens: 65536
+# require:
+#   - aigency-example

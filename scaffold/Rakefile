@@ -1,0 +1,30 @@
+require "bundler/setup"
+require 'yaml'
+require 'dotenv/load'
+require 'aigency'
+
+desc "Run a prompt from a file"
+task :load, [:filename] do |_, args|
+  aigent = Aigency::Aigent.new('.')
+  aigent.nonblock do
+    filename = File.join('data', 'chats', "#{Time.now.strftime("%Y-%m-%d_%H%M%S")}_load_#{args[:filename].gsub('/', '_')}.txt")
+    File.open(filename, 'w') do |file|
+      aigent.load args[:filename], out: file
+    rescue StandardError => e
+      file.puts "[#{e.class}]: #{e.message}"
+      file.puts e.backtrace
+    end
+  end
+end
+
+desc "Talk to the aigent"
+task :say, [:text] do |_, args|
+  aigent = Aigency::Aigent.new('.')
+  aigent.stream args[:text]
+end
+
+desc "Set up aigent configurations"
+task :setup do
+  aigent = Aigency::Aigent.new('.')
+  aigent.setup
+end
