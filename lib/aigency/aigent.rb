@@ -59,9 +59,7 @@ module Aigency
         @log.print chunk.content
       end
       @log.puts "Input tokens:    #{response.tokens.input}"
-      @log.puts "Thinking tokens: #{response.tokens.thinking}"
       @log.puts "Output tokens:   #{response.tokens.output}"
-      @log.puts "Cost:            #{response.cost.total}"
       @log = original_log
       response
     end
