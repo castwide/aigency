@@ -38,26 +38,31 @@ module Aigency
     # Initialize a RubyLLM::Chat.
     #
     # @param extra [Array<String>] Additional instructions
+    # @param tools [Array<Class<Tool>>] Available tools (default is all registered tools)
     # @return [RubyLLM::Chat]
-    def brief(*extra)
+    def brief(*extra, tools: Tools.registry)
       chat = rubyllm_context.chat(provider: :openai)
-      Tools.registry.each { |klass| chat.with_tool(klass.new(self)) }
+      tools.each { |klass| chat.with_tool(klass.new(self)) }
       chat.with_instructions(build_instructions(extra), append: true)
-      # @todo This should be configurable
       chat.with_params(max_tokens: max_tokens)
     end
 
-    def load filename, *extra, out: $stdout
-      stream File.read(filename), *extra, out: out
+    def load filename, *extra, tools: Tools.registry, out: $stdout
+      stream File.read(filename), *extra, tools: tools, out: out
     end
 
-    def stream text, *extra, with: [], out: $stdout
+    def stream text, *extra, with: [], tools: Tools.registry, out: $stdout
       original_log = @log
       @log = out
-      brief(*extra).ask text, with: with do |chunk|
+      response = brief(*extra, disarm: disarm).ask text, with: with do |chunk|
         @log.print chunk.thinking&.text
         @log.print chunk.content
-      end.tap { @log = original_log }
+      end #.tap { @log = original_log }
+      @log.puts "Input tokens: #{response.tokens.input}"
+      @log.puts "Thinking tokens: #{response.tokens.thinking}"
+      @log.puts "Output tokens: #{response.tokens.output}"
+      @log = original_log
+      response
     end
 
     # @param name [String]
