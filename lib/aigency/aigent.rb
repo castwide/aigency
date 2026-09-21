@@ -57,10 +57,10 @@ module Aigency
       response = brief(*extra, disarm: disarm).ask text, with: with do |chunk|
         @log.print chunk.thinking&.text
         @log.print chunk.content
-      end #.tap { @log = original_log }
-      @log.puts "Input tokens: #{response.tokens.input}"
+      end
+      @log.puts "Input tokens:    #{response.tokens.input}"
       @log.puts "Thinking tokens: #{response.tokens.thinking}"
-      @log.puts "Output tokens: #{response.tokens.output}"
+      @log.puts "Output tokens:   #{response.tokens.output}"
       @log = original_log
       response
     end
