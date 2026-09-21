@@ -54,7 +54,7 @@ module Aigency
     def stream text, *extra, with: [], tools: Tools.registry, out: $stdout
       original_log = @log
       @log = out
-      response = brief(*extra, disarm: disarm).ask text, with: with do |chunk|
+      response = brief(*extra, tools: tools).ask text, with: with do |chunk|
         @log.print chunk.thinking&.text
         @log.print chunk.content
       end
