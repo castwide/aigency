@@ -8,7 +8,7 @@ RSpec.describe Aigency::Workspace::DirectoryReader do
     reader = described_class.new(aigent)
     result = reader.execute(directory_name: 'subdir')
     expect(result[:success]).to be(true)
-    expect(result[:entries]).to eq(["file.txt"])
+    expect(result[:entries]).to eq(["file.txt", ".hidden"])
   end
 
   it 'handles non-existent directories' do

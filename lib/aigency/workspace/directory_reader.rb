@@ -17,7 +17,7 @@ module Aigency
           {
             directory: directory_name,
             success: true,
-            entries: Dir[File.join(resolved, '*')].map { |dir| dir[resolved.length+1..]}
+            entries: Dir.entries(resolved)[2..]
           }
         else
           {
