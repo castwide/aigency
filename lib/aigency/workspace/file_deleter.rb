@@ -3,19 +3,17 @@
 module Aigency
   module Workspace
     class FileDeleter < Tool
-      desc "Deletes a file from your private workspace"
+      include Helpers
+
+      desc "Delete a file from your private workspace"
 
       def execute(filename:)
         aigent.log.puts "[Workspace::FileDeleter] Deleting file #{filename}"
-
-        directory = aigent.data('directory')
-        resolved = File.absolute_path(filename, directory)
-        return { filename: filename, error: "Permission denied" } unless resolved.start_with?(directory)
-        return { filename: filename, error: "Permission denied" } if resolved.include?('/.git/')
-        return { filename: filename, error: "File does not exist" } unless File.file?(resolved)
-
+        resolved = expand_to_workspace(filename)
         File.delete resolved
         { filename: filename, success: true }
+      rescue StandardError => e
+        { success: false, error: "[#{e.class}] #{e.message}" }
       end
     end
   end

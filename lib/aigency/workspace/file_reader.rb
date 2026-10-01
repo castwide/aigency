@@ -3,28 +3,22 @@
 module Aigency
   module Workspace
     class FileReader < Tool
-      desc "Reads a file from your private workspace"
+      include Helpers
+
+      desc "Read a file from your private workspace"
 
       def execute(filename:)
         aigent.log.puts "[Workspace::FileReader] Reading #{filename}"
 
-        directory = aigent.data('workspace')
-        resolved = File.absolute_path(filename, directory)
-        return { filename: filename, success: false, error: "Permission denied" } unless resolved.start_with?(directory)
+        resolved = expand_to_workspace(filename)
 
-        if File.file?(resolved)
-          {
-            filename: filename,
-            success: true,
-            content: File.read(resolved)
-          }
-        else
-          {
-            filename: filename,
-            success: false,
-            error: "File not found"
-          }
-        end
+        {
+          success: true,
+          filename: filename,
+          content: File.read(resolved)
+        }
+      rescue StandardError => e
+        { success: false, error: "[#{e.class}] #{e.message}"}
       end
     end
   end

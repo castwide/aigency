@@ -3,19 +3,18 @@
 module Aigency
   module Workspace
     class DirectoryDeleter < Tool
-      desc "Deletes a directory from your private workspace"
+      include Helpers
 
-      def execute(dirname:)
-        puts "Deleting directory #{dirname}"
+      desc "Delete a directory and all of its contents from your private workspace"
 
-        resolved = File.absolute_path(dirname, aigent.data('workspace'))
-        return { dirname: dirname, success: false, error: "Permission denied" } unless resolved.start_with?(aigent.data('workspace'))
-        return { dirname: dirname, success: false, error: "Permission denied" } if resolved.include?('/.git/') || resolved.end_with?('/.git')
-        return { dirname: dirname, success: false, error: "Not a directory" } if File.file?(resolved)
-        return { dirname: dirname, sucess: false, error: "Directory not found" } unless File.directory?(resolved)
+      def execute(directory_name:)
+        aigent.log.puts "[Workspace::DirectoryDeleter] #{directory_name}"
 
+        resolved = expand_to_workspace(directory_name)
         FileUtils.rm_rf(resolved)
-        { dirname: dirname, success: true }
+        { dirname: directory_name, success: true }
+      rescue StandardError => e
+        { success: false, error: "[#{e.class}] #{e.message}"}
       end
     end
   end
