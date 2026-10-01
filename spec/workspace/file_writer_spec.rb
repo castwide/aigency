@@ -19,6 +19,13 @@ RSpec.describe Aigency::Workspace::FileWriter do
     expect(File.read(File.join(@tmpdir, 'data', 'workspace', 'file.txt'))).to eq('New file')
   end
 
+  it 'rejects prohibited paths' do
+    writer = described_class.new(aigent)
+    result = writer.execute(filename: '../file.txt', content: 'Invalid file')
+    expect(result[:success]).to be(false)
+    expect(result[:error]).to include('Permission denied')
+  end
+
   it 'handles invalid paths' do
     writer = described_class.new(aigent)
     result = writer.execute(filename: '/root/file.txt', content: 'Invalid file')
