@@ -14,6 +14,13 @@ RSpec.describe Aigency::Workspace::FileWriter do
 
   it 'writes files' do
     writer = described_class.new(aigent)
+    result = writer.execute(filename: 'subdir/file.txt', content: 'New file')
+    expect(result[:success]).to be(true)
+    expect(File.read(File.join(@tmpdir, 'data', 'workspace', 'subdir', 'file.txt'))).to eq('New file')
+  end
+
+  it 'writes files' do
+    writer = described_class.new(aigent)
     result = writer.execute(filename: 'file.txt', content: 'New file')
     expect(result[:success]).to be(true)
     expect(File.read(File.join(@tmpdir, 'data', 'workspace', 'file.txt'))).to eq('New file')

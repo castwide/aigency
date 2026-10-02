@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-require "aigency"
-
 require 'dotenv'
 Dotenv.load File.join('spec', 'fixtures', 'aigent', '.env')
+
+require 'simplecov'
+SimpleCov.start
+
+require "aigency"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
