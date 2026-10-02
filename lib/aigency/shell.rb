@@ -6,8 +6,8 @@ require 'thor'
 module Aigency
   class Shell < Thor
     map %i[new] => :enlist
-    desc "enlist [DIRECTORY]", "Enable the current user as an aigent"
-    option :directory, type: :string, desc: 'Aigent directory', default: File.join(Dir.home, 'aigent')
+    desc "enlist", "Enable the current user as an aigent"
+    option :directory, type: :string, aliases: :d, desc: 'Aigent directory', default: File.join(Dir.home, 'aigent')
     def enlist
       directory = options[:directory]
       puts "Installing aigent at #{directory}"
