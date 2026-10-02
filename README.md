@@ -38,7 +38,7 @@ rake setup
 
 The bare minimum configuration you need to do is setting `openai_api_base` and `openai_api_key` in `config/aigent.yml`.
 
-Test the aigent with with the `rake say` task.
+Test the aigent with the `rake say` task.
 
 ```bash
 rake say["How many fibers are intertwined in a shredded wheat biscuit?"]
