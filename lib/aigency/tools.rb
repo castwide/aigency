@@ -43,12 +43,10 @@ module Aigency
 
   Tools.configure 'aigent', <<~EOF
     name: an Aigent
-    openai_api_base: https://api.openai.com/v1
-    openai_api_key: CHANGE_ME
-    require:
-      - aigency/email
-      - aigency/wikipedia
-      - aigency/workspace
+    openai_api_base: ${OPENAI_API_BASE}
+    openai_api_key: ${OPENAI_API_KEY}
+    # require:
+    #   - aigency-example
   EOF
 
   Tools.mkdir_p 'data/chats', 'data/log'

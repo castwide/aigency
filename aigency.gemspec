@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_dependency "dotenv", "~> 3.2"
   spec.add_dependency "fileutils", "~> 1.8"
   spec.add_dependency "ruby_llm", "~> 1.15"
   spec.add_dependency "thor", "~> 1.5"

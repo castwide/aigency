@@ -157,7 +157,9 @@ module Aigency
       end
       full_path = File.join(directory, 'config', filename)
       if File.file?(full_path)
-        YAML.load_file(full_path)
+        content = File.read(full_path)
+                      .gsub(/\${([^}]+)}/) { ENV.fetch($1) }
+        YAML.load(content)
       else
         warn "Config name #{name} not found at #{full_path}"
         {}

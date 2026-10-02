@@ -12,6 +12,15 @@ RSpec.describe Aigency::Aigent do
       expect(config['name']).to eq('example')
       expect(config['emails']).to eq(['one@example.com', 'two@example.com'])
     end
+
+    it 'loads environment variables' do
+      config = aigent.config('aigent')
+      expect(config['openai_api_base']).to eq('https://api.openai.com/v1')
+    end
+
+    it 'raises KeyError on missing environment variables' do
+      expect { aigent.config('error') }.to raise_error(KeyError)
+    end
   end
 
   describe '#name' do
