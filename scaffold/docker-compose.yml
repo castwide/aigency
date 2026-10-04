@@ -3,4 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - ./data/homedir:/home/app
     command: ["sleep", "infinity"]
