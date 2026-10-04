@@ -60,8 +60,12 @@ module Aigency
       end
       @log.puts "Input tokens:    #{response.tokens.input}"
       @log.puts "Output tokens:   #{response.tokens.output}"
-      @log = original_log
       response
+    rescue StandardError => e
+      @log.puts "[#{e.class}] #{e.message}"
+      @log.puts e.backtrace
+    ensure
+      @log = original_log
     end
 
     # @param name [String]
