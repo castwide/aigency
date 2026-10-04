@@ -14,8 +14,8 @@ module Aigency
 
         resolved = expand_to_workspace(filename)
         FileUtils.mkdir_p File.dirname(resolved)
-        File.write resolved, content
-        return { filename: filename, success: true }
+        File.write resolved, content, binmode: true
+        { filename: filename, success: true }
       rescue StandardError => e
         { success: false, error: "[#{e.class}] #{e.message}" }
       end

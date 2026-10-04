@@ -15,7 +15,7 @@ module Aigency
         {
           success: true,
           filename: filename,
-          content: File.read(resolved)
+          content: File.read(resolved, binmode: true)
         }
       rescue StandardError => e
         { success: false, error: "[#{e.class}] #{e.message}"}
