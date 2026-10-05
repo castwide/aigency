@@ -16,6 +16,7 @@ module Aigency
       def first_path_argument = 0
 
       def execute(directory: '.', arguments: [])
+        aigent.log.puts "[Homedir::Shell] #{command} #{arguments.inspect}"
         resolved = expand_in_homedir(directory)
         validate_path_arguments(arguments, first_path_argument)
         output, error, result = Open3.capture3(command, *arguments, chdir: resolved)

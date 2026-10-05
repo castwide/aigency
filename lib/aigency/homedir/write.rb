@@ -4,12 +4,16 @@ require 'open3'
 
 module Aigency
   module Homedir
+    # @note Unlike most of the Homedir tools, this one does not execute a shell
+    #   command. It uses ruby's File module instead.
+    #
     class Write < Tool
       include Helpers
 
       desc 'Write a file in the homedir'
 
       def execute(filename:, content:, append: true)
+        aigent.log.puts "[Homedir::Write] #{filename}"
         resolved = expand_in_homedir(filename)
         write_mode = if append
           "a"
