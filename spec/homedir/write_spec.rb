@@ -19,4 +19,11 @@ RSpec.describe Aigency::Homedir::Write do
     result = reader.execute(filename: 'not_real/test.txt', content: 'Hello, world!')
     expect(result[:success]).to be(false)
   end
+
+  it 'appends to existing files' do
+    File.write test_file, 'Hello, '
+    reader = described_class.new(aigent)
+    result = reader.execute(filename: 'test.txt', content: 'world!')
+    expect(File.read(test_file)).to eq('Hello, world!')
+  end
 end
