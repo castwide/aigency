@@ -52,7 +52,7 @@ module Aigency
       end
 
       def any_prohibited?(arguments)
-        arguments.any? { |arg| arg.start_with(*prohibited_arguments) }
+        arguments.any? { |arg| arg.start_with?(*prohibited_arguments) }
       end
     end
   end

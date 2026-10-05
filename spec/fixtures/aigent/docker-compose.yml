@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /home/app
+    volumes:
+      - ./data/homedir:/home/app
+    command: ["sleep", "infinity"]

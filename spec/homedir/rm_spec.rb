@@ -11,6 +11,7 @@ RSpec.describe Aigency::Homedir::Rm do
   it 'deletes a file' do
     reader = described_class.new(aigent)
     result = reader.execute(arguments: ['test.txt'])
+    puts result.inspect
     expect(result[:success]).to be(true)
     expect(File.file?(test_file)).to be(false)
   end

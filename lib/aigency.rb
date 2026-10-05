@@ -13,6 +13,7 @@ require 'aigency/shell'
 # Extensions
 # require 'aigency/workspace'
 require 'aigency/homedir'
+require 'aigency/docker'
 
 module Aigency
   GEM_PATH = File.absolute_path(File.join(__dir__, '..'))
