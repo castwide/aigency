@@ -14,7 +14,7 @@ module Aigency
 
         def execute(command:)
           aigent.log.puts "[Docker::Compose::Run] #{command}"
-          output, error, result = Open3.capture3('docker', 'compose', 'run', '--quiet-build', 'app', command, chdir: aigent.directory)
+          output, error, result = Open3.capture3('docker', 'compose', 'run', '--quiet-build', 'app', 'sh', '-c', command, chdir: aigent.directory)
           { success: result.success?, stdout: output, stderr: error }
         end
       end
