@@ -24,7 +24,7 @@ module Aigency
 
       def validate_path_arguments(arguments, start = 0)
         homedir = aigent.data('homedir')
-        path_arguments(arguments, start).each do |arg|
+        path_arguments(arguments, start).each do |path|
           resolved = File.expand_path(path, homedir)
           next if resolved == homedir || resolved.start_with?("#{homedir}/")
           raise PathError, "Permission denied: `#{path}` is not relative to your homedir"

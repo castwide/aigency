@@ -7,6 +7,7 @@ module Aigency
     require 'aigency/homedir/helpers'
     require 'aigency/homedir/shell'
     require 'aigency/homedir/ls'
+    require 'aigency/homedir/rm'
 
     Tools.mkdir_p 'data/workspace'
   end

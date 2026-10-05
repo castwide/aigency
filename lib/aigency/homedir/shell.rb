@@ -21,7 +21,6 @@ module Aigency
         output, error, result = Open3.capture3(command, *arguments, chdir: resolved)
         { success: result.success?, stdout: output, stderr: error }
       rescue StandardError => e
-        puts e.backtrace
         { success: false, error: "[#{e.class}] #{e.message}" }
       end
 
