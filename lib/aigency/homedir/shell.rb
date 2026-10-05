@@ -13,12 +13,15 @@ module Aigency
         raise 'Not implemented'
       end
 
-      def first_path_argument = 0
+      def non_path_arguments = []
 
       def execute(directory: '.', arguments: [])
         aigent.log.puts "[Homedir::Shell] #{command} #{arguments.inspect}"
         resolved = expand_in_homedir(directory)
-        validate_path_arguments(arguments, first_path_argument)
+        if arguments[0, non_path_arguments.length].any? { |arg| arg.start_with?('-') }
+          return { success: false, error: non_path_argument_error }
+        end
+        validate_path_arguments(arguments, non_path_arguments.length)
         output, error, result = Open3.capture3(command, *arguments, chdir: resolved)
         { success: result.success?, stdout: output, stderr: error }
       rescue StandardError => e
@@ -30,6 +33,17 @@ module Aigency
           string :directory, description: "The working directory relative to homedir", required: false
           array :arguments, of: :string, description: "Command arguments", required: false
         end
+      end
+
+      private
+
+      def non_path_argument_error
+        arg_count = if non_path_arguments.length > 1
+          "#{non_path_arguments.length} arguments"
+        else
+          'argument'
+        end
+        "Permission denied: first #{arg_count} must be [#{non_path_arguments.join(', ')}]"
       end
     end
   end
