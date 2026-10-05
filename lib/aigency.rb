@@ -11,7 +11,7 @@ require 'aigency/aigent'
 require 'aigency/shell'
 
 # Extensions
-require 'aigency/workspace'
+# require 'aigency/workspace'
 require 'aigency/homedir'
 
 module Aigency
