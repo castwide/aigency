@@ -26,4 +26,11 @@ RSpec.describe Aigency::Homedir::Write do
     result = reader.execute(filename: 'test.txt', content: 'world!')
     expect(File.read(test_file)).to eq('Hello, world!')
   end
+
+  it 'overwrites files' do
+    File.write test_file, 'Helllo, world!'
+    reader = described_class.new(aigent)
+    result = reader.execute(filename: 'test.txt', content: 'Goodbye, world!', append: false)
+    expect(File.read(test_file)).to eq('Goodbye, world!')
+  end
 end
