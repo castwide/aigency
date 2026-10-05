@@ -9,9 +9,9 @@ module Aigency
       #   @abstract
       #   @return [Aigency::Aigent]
 
-      # Expand a path relative to the aigent's workspace directory.
+      # Expand a path relative to the aigent's homedir.
       #
-      # @raise [PathError] if the expanded path is not inside the workspace
+      # @raise [PathError] if the expanded path is not inside the homedir
       # @param path [String]
       # @return [String]
       def expand_in_homedir(path)
@@ -22,6 +22,10 @@ module Aigency
         raise PathError, "Permission denied: `#{path}` is not relative to your homedir"
       end
 
+      # @raise [PathError] if the expanded path is not inside the homedir
+      # @param arguments [Array<String>]
+      # @param start [Integer]
+      # @return [void]
       def validate_path_arguments(arguments, start = 0)
         homedir = aigent.data('homedir')
         path_arguments(arguments, start).each do |arg|
@@ -32,10 +36,6 @@ module Aigency
         end
       end
 
-      # Select arguments that represent file or directory paths
-      # Grep syntax: grep [options] pattern [file ...]
-      # Arguments starting with '-' are options or option arguments
-      # After options, the first argument is the pattern, remaining are paths
       def path_arguments(arguments, start = 0)
         arguments.reject { |arg| arg =~ /^-[^\-]$/ || (arg.start_with?('--') && !arg.include?('=')) }
                  .[](start..) || []
