@@ -10,7 +10,6 @@ RSpec.describe Aigency::Homedir::Cp do
   it 'copies a file' do
     reader = described_class.new(aigent)
     result = reader.execute(arguments: ['root.txt', 'root_copy.txt'])
-    puts result.inspect
     expect(result[:success]).to be(true)
     expect(File.file?(copy_file)).to be(true)
   end
