@@ -12,6 +12,12 @@ module Aigency
 
       desc 'Write or append to a file in the homedir'
 
+      params do
+        string :filename, description: "The filename relative to the homedir", required: true
+        string :content, description: "The data to write to the file", required: true
+        string :append, "Append if true or overwrite if false", default: true
+      end
+
       def execute(filename:, content:, append: true)
         aigent.log.puts "[Homedir::Write] #{filename}"
         resolved = expand_in_homedir(filename)
