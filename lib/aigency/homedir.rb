@@ -8,11 +8,12 @@ module Aigency
     require 'aigency/homedir/shell'
     require 'aigency/homedir/cp'
     require 'aigency/homedir/diff'
+    require 'aigency/homedir/grep'
     require 'aigency/homedir/ls'
     require 'aigency/homedir/mkdir'
     require 'aigency/homedir/rm'
     require 'aigency/homedir/write'
 
-    Tools.mkdir_p 'data/workspace'
+    Tools.mkdir_p 'data/homedir'
   end
 end
