@@ -21,6 +21,15 @@ RSpec.describe Aigency::Homedir::Ls do
 
   it 'uses the -l argument' do
     reader = described_class.new(aigent)
+    result = reader.execute(arguments: ['-l'])
+    expect(result[:success]).to be(true)
+    expect(result[:stdout]).to include('total 4')
+    expect(result[:stdout]).to include('root.txt')
+    expect(result[:stdout]).to include('subdir')
+  end
+
+  it 'uses the -l -a arguments' do
+    reader = described_class.new(aigent)
     result = reader.execute(arguments: ['-l', '-a'])
     expect(result[:success]).to be(true)
     expect(result[:stdout]).to include('total 12')
