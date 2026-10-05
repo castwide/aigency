@@ -7,6 +7,7 @@ module Aigency
     require 'aigency/homedir/helpers'
     require 'aigency/homedir/shell'
     require 'aigency/homedir/cp'
+    require 'aigency/homedir/diff'
     require 'aigency/homedir/ls'
     require 'aigency/homedir/mkdir'
     require 'aigency/homedir/rm'
