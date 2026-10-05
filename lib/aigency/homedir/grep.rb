@@ -10,7 +10,7 @@ module Aigency
       def first_path_argument = 1
 
       def execute(directory: '.', arguments: [])
-        if arguments.any? { |arg| arg == '-f' || arg.start_with?('--file') }
+        if arguments.any? { |arg| arg.start_with?('-f') || arg.start_with?('--file') }
           return { success: false, error: 'Permission denied: -f and --file are prohibited arguments' }
         end
         super

@@ -24,8 +24,9 @@ module Aigency
 
       def validate_path_arguments(arguments, start = 0)
         homedir = aigent.data('homedir')
-        path_arguments(arguments, start).each do |path|
-          resolved = File.expand_path((path.start_with?('--') ? path.split('=', 2).last : path), homedir)
+        path_arguments(arguments, start).each do |arg|
+          path = split_path_part(arg)
+          resolved = File.expand_path(path, homedir)
           next if resolved == homedir || resolved.start_with?("#{homedir}/")
           raise PathError, "Permission denied: `#{path}` is not relative to your homedir"
         end
@@ -36,8 +37,17 @@ module Aigency
       # Arguments starting with '-' are options or option arguments
       # After options, the first argument is the pattern, remaining are paths
       def path_arguments(arguments, start = 0)
-        arguments.reject { |arg| arg.start_with?(/-[^\-]/) || (arg.start_with?('--') && !arg.include?('=')) }
+        arguments.reject { |arg| arg =~ /^-[^\-]$/ || (arg.start_with?('--') && !arg.include?('=')) }
                  .[](start..) || []
+      end
+
+      def split_path_part argument
+        return argument unless argument.start_with?('-')
+        if argument.start_with?('--')
+          argument.split('=', 2).last
+        else
+          argument[2..]
+        end
       end
     end
   end
