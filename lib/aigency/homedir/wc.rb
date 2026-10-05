@@ -7,5 +7,7 @@ module Aigency
 
       def command = 'wc'
     end
+
+    Tools.register Wc
   end
 end

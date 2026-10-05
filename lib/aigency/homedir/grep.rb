@@ -9,5 +9,7 @@ module Aigency
 
       def first_path_argument = 1
     end
+
+    Tools.register Grep
   end
 end

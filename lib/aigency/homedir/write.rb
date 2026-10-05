@@ -25,8 +25,8 @@ module Aigency
       rescue StandardError => e
         { success: false, error: "[#{e.class}] #{e.message}" }
       end
-
-      private
     end
+
+    Tools.register Write
   end
 end

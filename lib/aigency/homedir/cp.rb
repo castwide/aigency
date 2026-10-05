@@ -7,5 +7,7 @@ module Aigency
 
       def command = 'cp'
     end
+
+    Tools.register Cp
   end
 end

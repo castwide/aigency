@@ -25,7 +25,12 @@ module Aigency
         { success: false, error: "[#{e.class}] #{e.message}" }
       end
 
-      private
+      def self.inherited other
+        other.params do
+          string :directory, description: "The working directory relative to homedir", required: false
+          array :arguments, of: :string, description: "Command arguments", required: false
+        end
+      end
     end
   end
 end

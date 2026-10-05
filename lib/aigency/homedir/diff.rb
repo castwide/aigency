@@ -7,5 +7,7 @@ module Aigency
 
       def command = 'diff'
     end
+
+    Tools.register Diff
   end
 end

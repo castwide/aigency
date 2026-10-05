@@ -6,6 +6,7 @@ module Aigency
 
     require 'aigency/homedir/helpers'
     require 'aigency/homedir/shell'
+    require 'aigency/homedir/cat'
     require 'aigency/homedir/cp'
     require 'aigency/homedir/diff'
     require 'aigency/homedir/grep'
