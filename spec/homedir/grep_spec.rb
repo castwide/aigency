@@ -17,4 +17,11 @@ RSpec.describe Aigency::Homedir::Grep do
     expect(result[:success]).to be(false)
     expect(result[:error]).to include('PathError')
   end
+
+  it 'works with --help' do
+    reader = described_class.new(aigent)
+    result = reader.execute(arguments: ['--help'])
+    expect(result[:success]).to be(true)
+    expect(result[:stdout]).to include('Usage: grep')
+  end
 end
