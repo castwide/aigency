@@ -2,9 +2,6 @@
 
 module Aigency
   module Docker
-    class Run < Tool
-      def execute
-      end
-    end
+    require 'aigency/docker/compose'
   end
 end
