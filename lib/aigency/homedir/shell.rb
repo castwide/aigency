@@ -15,8 +15,13 @@ module Aigency
 
       def non_path_arguments = []
 
+      def prohibited_arguments = []
+
       def execute(directory: '.', arguments: [])
         aigent.log.puts "[Homedir::Shell] #{command} #{arguments.inspect}"
+        if any_prohibited?(arguments)
+          return { success: false, error: "Permission denied: the following arguments to `#{command}` are prohibited: #{prohibited_arguments.inspect}" }
+        end
         resolved = expand_in_homedir(directory)
         if arguments != ['--help'] && arguments[0, non_path_arguments.length].any? { |arg| arg.start_with?('-') }
           return { success: false, error: non_path_argument_error }
@@ -44,6 +49,10 @@ module Aigency
           'argument'
         end
         "Permission denied: first #{arg_count} must be [#{non_path_arguments.join(', ')}] unless the only argument is `--help`"
+      end
+
+      def any_prohibited?(arguments)
+        arguments.any? { |arg| arg.start_with(*prohibited_arguments) }
       end
     end
   end
