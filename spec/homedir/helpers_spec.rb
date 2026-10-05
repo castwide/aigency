@@ -27,8 +27,12 @@ RSpec.describe Aigency::Homedir::Helpers do
       expect { described_class.validate_path_arguments(['--arg=/foo/bar/baz.txt']) }.to raise_error(Aigency::Homedir::PathError)
     end
 
-    it 'rejects invalid paths in glued short arguments' do
+    it 'rejects invalid paths in glued short options' do
       expect { described_class.validate_path_arguments(['-r/foo']) }.to raise_error(Aigency::Homedir::PathError)
+    end
+
+    it 'rejects invalid paths in clustered glued short options' do
+      expect { described_class.validate_path_arguments(['-tvr/foo']) }.to raise_error(Aigency::Homedir::PathError)
     end
   end
 end

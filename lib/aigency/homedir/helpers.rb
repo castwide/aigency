@@ -27,6 +27,10 @@ module Aigency
       # @param start [Integer]
       # @return [void]
       def validate_path_arguments(arguments, start = 0)
+        glued_shorts = arguments.select { |arg| arg =~ /^-[^\-].+/ }
+        unless glued_shorts.empty?
+          raise PathError, "Permission denied: glued short options (#{glued_shorts.inspect}) are not allowed"
+        end
         homedir = aigent.data('homedir')
         path_arguments(arguments, start).each do |arg|
           path = split_path_part(arg)
