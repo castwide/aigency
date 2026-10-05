@@ -24,4 +24,11 @@ RSpec.describe Aigency::Homedir::Grep do
     expect(result[:success]).to be(true)
     expect(result[:stdout]).to include('Usage: grep')
   end
+
+  it 'restricts arguments' do
+    reader = described_class.new(aigent)
+    result = reader.execute(arguments: ['foo', '--file', 'bar'])
+    expect(result[:success]).to be(false)
+    expect(result[:error]).to include("arguments to `grep` are prohibited")
+  end
 end

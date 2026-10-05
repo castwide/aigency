@@ -8,6 +8,8 @@ module Aigency
       def command = 'grep'
 
       def non_path_arguments = %w[PATTERN]
+
+      def prohibited_arguments = %w[-f --file]
     end
 
     Tools.register Grep
