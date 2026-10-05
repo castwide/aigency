@@ -11,7 +11,9 @@ module Aigency
     require 'aigency/homedir/grep'
     require 'aigency/homedir/ls'
     require 'aigency/homedir/mkdir'
+    require 'aigency/homedir/mv'
     require 'aigency/homedir/rm'
+    require 'aigency/homedir/wc'
     require 'aigency/homedir/write'
 
     Tools.mkdir_p 'data/homedir'
