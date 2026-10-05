@@ -9,21 +9,21 @@ RSpec.describe Aigency::Homedir::Write do
 
   it 'writes a file' do
     reader = described_class.new(aigent)
-    result = reader.execute(filename: 'test.txt', content: 'Hello, world!')
+    result = reader.execute(filename: 'test.txt', content: 'Hello, world!', append: false)
     expect(result[:success]).to be(true)
     expect(File.read(test_file)).to eq('Hello, world!')
   end
 
   it 'fails for nonexistent directories' do
     reader = described_class.new(aigent)
-    result = reader.execute(filename: 'not_real/test.txt', content: 'Hello, world!')
+    result = reader.execute(filename: 'not_real/test.txt', content: 'Hello, world!', append: false)
     expect(result[:success]).to be(false)
   end
 
   it 'appends to existing files' do
     File.write test_file, 'Hello, '
     reader = described_class.new(aigent)
-    result = reader.execute(filename: 'test.txt', content: 'world!')
+    result = reader.execute(filename: 'test.txt', content: 'world!', append: true)
     expect(File.read(test_file)).to eq('Hello, world!')
   end
 
