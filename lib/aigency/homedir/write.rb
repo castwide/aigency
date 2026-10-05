@@ -10,7 +10,7 @@ module Aigency
     class Write < Tool
       include Helpers
 
-      desc 'Write a file in the homedir'
+      desc 'Write or append to a file in the homedir'
 
       def execute(filename:, content:, append: true)
         aigent.log.puts "[Homedir::Write] #{filename}"
