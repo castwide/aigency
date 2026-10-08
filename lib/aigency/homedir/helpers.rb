@@ -17,7 +17,6 @@ module Aigency
       def expand_in_homedir(path)
         homedir = aigent.data('homedir')
         resolved = File.expand_path(path, homedir)
-        resolved = File.realpath(resolved) if File.symlink?(resolved)
         return resolved if resolved == homedir || resolved.start_with?("#{homedir}/")
         raise PathError, "Permission denied: `#{path}` is not relative to your homedir"
       end
@@ -40,7 +39,6 @@ module Aigency
           end
           path = split_path_part(arg)
           resolved = File.expand_path(path, homedir)
-          resolved = File.realpath(resolved) if File.symlink?(resolved)
           next if resolved == homedir || resolved.start_with?("#{homedir}/")
           raise PathError, "Permission denied: `#{path}` is not relative to your homedir"
         end
