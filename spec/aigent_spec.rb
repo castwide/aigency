@@ -91,7 +91,12 @@ RSpec.describe Aigency::Aigent do
   end
 
   describe '#tools' do
-    xit 'reads tools from plugins' do
+    let(:all_tools) {
+      [Aigency::Homedir::Cat, Aigency::Homedir::Cp, Aigency::Homedir::Diff, Aigency::Homedir::Grep, Aigency::Homedir::Ls, Aigency::Homedir::Mkdir, Aigency::Homedir::Mv, Aigency::Homedir::Rm, Aigency::Homedir::Wc, Aigency::Homedir::Write, Aigency::Docker::Compose::Run]
+    }
+
+    it 'reads tools from plugins' do
+      expect(aigent.tools).to match_array(all_tools)
     end
   end
 end
