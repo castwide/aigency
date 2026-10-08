@@ -38,23 +38,23 @@ module Aigency
     # Initialize a RubyLLM::Chat.
     #
     # @param extra [Array<String>] Additional instructions
-    # @param toolset [Array<Class<Tool>>] Available tools (default is all registered tools)
+    # @param except [Array<Class<Tool>>] Tools to exclude from this chat
     # @return [RubyLLM::Chat]
-    def brief(*extra, toolset: tools)
+    def brief(*extra, except: [])
       chat = rubyllm_context.chat(provider: :openai)
-      toolset.each { |klass| chat.with_tool(klass.new(self)) }
+      (tools - except).each { |klass| chat.with_tool(klass.new(self)) }
       chat.with_instructions(build_instructions(extra), append: true)
       chat.with_params(max_tokens: max_tokens)
     end
 
-    def load filename, *extra, toolset: tools, out: $stdout
-      stream File.read(filename), *extra, toolset: toolset, out: out
+    def load filename, *extra, except: [], out: $stdout
+      stream File.read(filename), *extra, except: except, out: out
     end
 
-    def stream text, *extra, with: [], toolset: tools, out: $stdout
+    def stream text, *extra, attach: [], except: [], out: $stdout
       original_log = @log
       @log = out
-      response = brief(*extra, toolset: toolset).ask text, with: with do |chunk|
+      response = brief(*extra, except: except).ask text, with: attach do |chunk|
         @log.print chunk.thinking&.text
         @log.print chunk.content
       end
