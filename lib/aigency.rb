@@ -8,6 +8,7 @@ require 'aigency/usability'
 require 'aigency/tool'
 require 'aigency/tools'
 require 'aigency/aigent'
+require 'aigency/plugin'
 require 'aigency/shell'
 
 # Extensions

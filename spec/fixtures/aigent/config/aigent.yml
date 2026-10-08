@@ -2,3 +2,6 @@ openai_api_base: ${OPENAI_API_BASE}
 openai_api_key: ${OPENAI_API_KEY}
 name: 'Example Aigent'
 prompt: 'How to use example'
+plugins:
+  - homedir
+  - docker

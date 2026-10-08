@@ -83,4 +83,15 @@ RSpec.describe Aigency::Aigent do
       expect(aigent.instructions).to include('How to use example')
     end
   end
+
+  describe '#plugins' do
+    it 'returns configured plugins' do
+      expect(aigent.plugins.map(&:name)).to eq(['homedir', 'docker'])
+    end
+  end
+
+  describe '#tools' do
+    xit 'reads tools from plugins' do
+    end
+  end
 end

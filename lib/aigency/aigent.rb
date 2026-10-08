@@ -38,23 +38,23 @@ module Aigency
     # Initialize a RubyLLM::Chat.
     #
     # @param extra [Array<String>] Additional instructions
-    # @param tools [Array<Class<Tool>>] Available tools (default is all registered tools)
+    # @param toolset [Array<Class<Tool>>] Available tools (default is all registered tools)
     # @return [RubyLLM::Chat]
-    def brief(*extra, tools: Tools.registry)
+    def brief(*extra, toolset: tools)
       chat = rubyllm_context.chat(provider: :openai)
-      tools.each { |klass| chat.with_tool(klass.new(self)) }
+      toolset.each { |klass| chat.with_tool(klass.new(self)) }
       chat.with_instructions(build_instructions(extra), append: true)
       chat.with_params(max_tokens: max_tokens)
     end
 
-    def load filename, *extra, tools: Tools.registry, out: $stdout
-      stream File.read(filename), *extra, tools: tools, out: out
+    def load filename, *extra, toolset: tools, out: $stdout
+      stream File.read(filename), *extra, toolset: toolset, out: out
     end
 
-    def stream text, *extra, with: [], tools: Tools.registry, out: $stdout
+    def stream text, *extra, with: [], toolset: tools, out: $stdout
       original_log = @log
       @log = out
-      response = brief(*extra, tools: tools).ask text, with: with do |chunk|
+      response = brief(*extra, toolset: toolset).ask text, with: with do |chunk|
         @log.print chunk.thinking&.text
         @log.print chunk.content
       end
@@ -144,6 +144,15 @@ module Aigency
 
     def instructions
       @instructions ||= build_instructions([])
+    end
+
+    def plugins
+      config('aigent').fetch('plugins', [])
+                      .map { |name| Plugin.registry[name] }
+    end
+
+    def tools
+      plugins.flat_map(&:tools)
     end
 
     private

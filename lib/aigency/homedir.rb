@@ -18,5 +18,11 @@ module Aigency
     require 'aigency/homedir/write'
 
     Tools.mkdir_p 'data/homedir'
+
+    Plugin.register Plugin.new(
+      'homedir',
+      directories: ['data/homedir'],
+      tools: [Cat, Cp, Diff, Grep, Ls, Mkdir, Mv, Rm, Wc, Write]
+    )
   end
 end
