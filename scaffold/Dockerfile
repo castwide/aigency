@@ -9,14 +9,10 @@ RUN apk add --no-cache \
       linux-headers \
       git \
       # Ruby toolchain for this project (psych/yaml need yaml-dev):
-      ruby \
-      ruby-dev \
-      ruby-bundler \
-      yaml-dev
-
-# Create a non-root user/group with a stable uid/gid and switch to it.
-RUN addgroup -g 1000 app && \
-    adduser  -u 1000 -G app -D -h /home/app app
+    #   ruby \
+    #   ruby-dev \
+    #   ruby-bundler \
+    #   yaml-dev
+RUN adduser -D -h /homedir user
 USER app
-
 CMD ["sleep", "infinity"]
