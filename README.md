@@ -2,6 +2,13 @@
 
 A framework for creating AI agents with RubyLLM.
 
+## Requierments
+
+- Ruby 3.2+
+- Docker 29+
+
+(Note: Aigency is not tested on Windows. Some features are known to be Windows-incompatible.)
+
 ## Installation
 
 Install the gem from the command line:
