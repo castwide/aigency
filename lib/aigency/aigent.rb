@@ -149,11 +149,11 @@ module Aigency
     # @param plugin [Plugin]
     def boot(plugin)
       unless plugin.config.empty?
-        config_file = File.absolute_path("#{plugin.name}.yml", directory)
+        config_file = File.absolute_path(File.join('config', "#{plugin.name}.yml"), directory)
         if File.exist?(config_file)
-          log.puts "File #{plugin.name}.yml exists, skipping"
+          log.puts "File config/#{plugin.name}.yml exists, skipping"
         else
-          log.puts "Creating #{plugin.name}.yml"
+          log.puts "Creating config/#{plugin.name}.yml"
           File.write config_file, plugin.config
         end
       end
