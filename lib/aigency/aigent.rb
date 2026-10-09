@@ -223,6 +223,7 @@ module Aigency
       # @todo Should aigents load prompts from config files that do not have
       #   a corresponding plugin?
       plugins.map { |plugin| config(plugin.name)['prompt'] }
+             .compact
     end
 
     def load_requires
