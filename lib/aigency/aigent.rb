@@ -141,7 +141,7 @@ module Aigency
     end
 
     def tools
-      plugins.flat_map(&:tools)
+      plugins.flat_map(&:tools).uniq
     end
 
     private
