@@ -1,0 +1,23 @@
+# Allowlist-only forward proxy.
+# NOTE: this file deliberately does NOT `include /etc/squid/conf.d/*`, so the
+# rules Ubuntu ships in the image can't silently widen the allowlist.
+
+http_port 3128
+visible_hostname egress
+cache deny all                       # forward proxy only, nothing to disk
+access_log daemon:/var/log/squid/access.log
+logfile_rotate 0
+forwarded_for off                    # don't leak the container's IP downstream
+
+acl SSL_ports  port 443
+acl Safe_ports port 80 443
+acl http_targets dstdomain example.com
+
+acl SSH_ports port 22
+acl ssh_targets dstdomain example.com
+
+http_access allow CONNECT ssh_targets SSH_ports
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+http_access allow  http_targets
+http_access deny   all

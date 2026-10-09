@@ -4,27 +4,23 @@ An aigent (AI agent) is an intelligent assistant powered by language models thro
 
 ## Configuration
 
-### Install dependencies
+### 1. Install dependencies
 
 ```bash
 bundle install
 ```
 
-### Initial setup
+### 2. Configure OpenAI API Connection
+
+Copy the example env file:
 
 ```bash
-rake setup
+cp .env.example .env
 ```
 
-### 1. Configure the Aigent
+Modify the `OPENAI_API_BASE` and `OPENAI_API_KEY` as needed. If you're using a local AI server or any other provider that is compatible with OpenAI, you can set the OPENAI_API_BASE config option to point there instead (e.g., `http://localhost:8080/v1`).
 
-Configure the aigent's settings in `config/aigent.yml`.
-
-#### OpenAI-Compatible Providers
-
-If you're using a local AI server or any other provider that is compatible with OpenAI, you can set the OPENAI_API_BASE config option to point there instead (e.g., `http://localhost:8080/v1`).
-
-### 2. Define the Aigent's Personality
+### 3. Define the Aigent's Personality
 
 Edit `IDENTITY.md` to define how your aigent should behave:
 
@@ -34,6 +30,22 @@ You are a professional assistant named Alex. You respond in a friendly but conci
 
 This file sets the foundation for all the aigent's responses.
 
+### 4. Configure Plugins
+
+Aigency ships with two plugins: `workspace` and `sandbox`. The `workspace` plugin is enabled by default. It's recommended that you use one or the other, but not both.
+
+The `workspace` plugin gives your aigent a directory where it can manage its own files.
+
+The `sandbox` plugin provides a container where the aigent can not only manage files, but also run commands and scripts.
+
+The `workspace` plugin is sufficient for many aigents. Switch to `sandbox` if you need your aigent to perform complex tasks.
+
+### 5. Run setup
+
+```bash
+rake setup
+```
+
 ## Usage
 
 ### Interactive Mode
@@ -41,16 +53,12 @@ This file sets the foundation for all the aigent's responses.
 Talk to your aigent using the Rake task:
 
 ```bash
-rake say["Tell me about project progress"]
+rake say["How many fibers are intertwined in a shredded wheat biscuit?"]
 ```
-
-### The Workspace
-
-Your aigent has read/write access to everything in the `data/workspace` directory.
 
 ### Scheduling Tasks
 
-The project includes the `whenever` gem for scheduling. Example of a scheduled task:
+Aigents use the `whenever` gem for scheduling. Example of a scheduled task:
 
 ```ruby
 # config/schedule.rb
@@ -69,6 +77,10 @@ bundle exec whenever --update-crontab
 
 (Note: the `whenever` gem does not work on Windows.)
 
-## Aigent Tools
+### Using the Sandbox
 
-You can give your aigent more functionality by installing additional tools. It ships with the `Workspace` tool, which gives it full read/write access to the `data/workspace` directory.
+If you enable the `sandbox` plugin, you'll need to start the container:
+
+```bash
+docker compose up -d
+```

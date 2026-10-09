@@ -2,6 +2,8 @@ name: Aigent
 openai_api_base: ${OPENAI_API_BASE}
 openai_api_key: ${OPENAI_API_KEY}
 # max_tokens: 65536
-# plugins:
-#   - sandbox
-#   - workspace
+plugins:
+  # You should only need either a workspace or a sandbox, not both. If you
+  # enable one, it's recommended that you disable the other.
+  # - sandbox
+  - workspace
