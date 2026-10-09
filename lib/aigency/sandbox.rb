@@ -7,7 +7,7 @@ module Aigency
     Plugin.register Plugin.new(
       'sandbox',
       tools: [Sandbox::Exec],
-      directories: 'data/sandbox'
+      directories: ['data/sandbox']
     )
   end
 end
