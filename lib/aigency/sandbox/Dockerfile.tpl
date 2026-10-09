@@ -4,6 +4,7 @@ RUN apk add --no-cache \
       build-base \
       musl-dev \
       linux-headers \
+      openssh \
       git \
       curl
 
