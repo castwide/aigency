@@ -47,10 +47,24 @@ module Aigency
       chat.with_params(max_tokens: max_tokens)
     end
 
+    # Prompt a chat with a file.
+    #
+    # @param filename [String]
+    # @param extra [Array<String>] Additional instructions
+    # @param except [Array<Class<Tool>>] Tools to exclude from this chat
+    # @param out [IO]
+    # @return [RubyLLM::Chat]
     def load filename, *extra, except: [], out: $stdout
       stream File.read(filename), *extra, except: except, out: out
     end
 
+    # Prompt a chat.
+    #
+    # @param text [String]
+    # @param extra [Array<String>] Additional instructions
+    # @param except [Array<Class<Tool>>] Tools to exclude from this chat
+    # @param out [IO]
+    # @return [RubyLLM::Chat]
     def stream text, *extra, attach: [], except: [], out: $stdout
       original_log = @log
       @log = out
@@ -74,7 +88,7 @@ module Aigency
       configs[name] ||= read_config(name)
     end
 
-    # Initialize the aigent's tool configurations.
+    # Initialize the aigent's plugin configurations.
     #
     # @param only [Array<String>] Limit the tools being configured
     # @param overwrite [Boolean] Replace existing configs if true
