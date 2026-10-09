@@ -7,7 +7,5 @@ module Aigency
 
       def command = 'rm'
     end
-
-    Tools.register Rm
   end
 end

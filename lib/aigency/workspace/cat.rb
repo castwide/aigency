@@ -7,7 +7,5 @@ module Aigency
 
       def command = 'cat'
     end
-
-    Tools.register Cat
   end
 end

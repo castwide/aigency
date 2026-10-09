@@ -7,7 +7,5 @@ module Aigency
 
       def command = 'mv'
     end
-
-    Tools.register Mv
   end
 end

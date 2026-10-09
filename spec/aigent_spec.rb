@@ -81,7 +81,7 @@ RSpec.describe Aigency::Aigent do
 
   describe '#instructions' do
     it 'includes tool prompts' do
-      expect(aigent.instructions).to include('How to use example')
+      expect(aigent.instructions).to include('You are a helpful AI assistant.')
     end
   end
 

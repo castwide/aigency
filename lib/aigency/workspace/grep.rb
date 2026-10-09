@@ -11,7 +11,5 @@ module Aigency
 
       def prohibited_arguments = %w[-f --file]
     end
-
-    Tools.register Grep
   end
 end

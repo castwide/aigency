@@ -17,8 +17,6 @@ module Aigency
     require 'aigency/workspace/wc'
     require 'aigency/workspace/write'
 
-    # Tools.mkdir_p 'data/workspace'
-
     Plugin.register Plugin.new(
       'workspace',
       directories: ['data/workspace'],

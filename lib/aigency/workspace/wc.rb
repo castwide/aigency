@@ -9,7 +9,5 @@ module Aigency
 
       def prohibited_arguments = %w[--files0-from]
     end
-
-    Tools.register Wc
   end
 end

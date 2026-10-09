@@ -220,10 +220,9 @@ module Aigency
     end
 
     def tool_prompts
-      Tools.config_map
-           .keys
-           .map { |name| config(name)['prompt'] }
-           .compact
+      # @todo Should aigents load prompts from config files that do not have
+      #   a corresponding plugin?
+      plugins.map { |plugin| config(plugin.name)['prompt'] }
     end
 
     def load_requires

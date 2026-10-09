@@ -7,7 +7,5 @@ module Aigency
 
       def command = 'mkdir'
     end
-
-    Tools.register Mkdir
   end
 end

@@ -7,7 +7,5 @@ module Aigency
 
       def command = 'ls'
     end
-
-    Tools.register Ls
   end
 end

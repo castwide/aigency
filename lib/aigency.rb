@@ -6,15 +6,12 @@ require 'ruby_llm'
 require 'aigency/version'
 require 'aigency/usability'
 require 'aigency/tool'
-require 'aigency/tools'
 require 'aigency/aigent'
 require 'aigency/plugin'
 require 'aigency/shell'
 
 # Extensions
-# require 'aigency/workspace'
 require 'aigency/workspace'
-# require 'aigency/docker'
 require 'aigency/sandbox'
 
 module Aigency

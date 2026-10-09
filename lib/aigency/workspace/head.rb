@@ -7,7 +7,5 @@ module Aigency
 
       def command = 'head'
     end
-
-    Tools.register Head
   end
 end

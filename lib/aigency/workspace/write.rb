@@ -32,7 +32,5 @@ module Aigency
         { success: false, error: "[#{e.class}] #{e.message}" }
       end
     end
-
-    Tools.register Write
   end
 end
