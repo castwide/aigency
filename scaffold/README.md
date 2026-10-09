@@ -84,3 +84,7 @@ If you enable the `sandbox` plugin, you'll need to start the container:
 ```bash
 docker compose up -d
 ```
+
+The sandbox app is initialized with an egress that only allows network access to domains that are whitelisted in `squid.conf`. See the `http_targets` and `ssh_targets` ACLs.
+
+Manage the sandbox user's SSH configuration in `data/sandbox_ssh`.
