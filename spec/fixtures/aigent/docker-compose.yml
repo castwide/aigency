@@ -5,5 +5,5 @@ services:
       dockerfile: Dockerfile
     working_dir: /home/app
     volumes:
-      - ./data/homedir:/home/app
+      - ./data/workspace:/home/app
     command: ["sleep", "infinity"]

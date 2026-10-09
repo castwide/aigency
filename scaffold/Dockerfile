@@ -13,6 +13,6 @@ RUN apk add --no-cache \
     #   ruby-dev \
     #   ruby-bundler \
     #   yaml-dev
-RUN adduser -D -h /homedir user
+RUN adduser -D -h /workspace user
 USER app
 CMD ["sleep", "infinity"]

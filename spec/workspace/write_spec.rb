@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Aigency::Homedir::Write do
+RSpec.describe Aigency::Workspace::Write do
   let(:aigent_directory) { File.join('spec', 'fixtures', 'aigent') }
   let(:aigent) { Aigency::Aigent.new(aigent_directory) }
-  let(:test_file) { File.join(aigent.data('homedir'), 'test.txt') }
+  let(:test_file) { File.join(aigent.data('workspace'), 'test.txt') }
 
   after(:each) { File.unlink test_file if File.file?(test_file) }
 

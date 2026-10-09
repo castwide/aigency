@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Aigency
-  module Homedir
+  module Workspace
     class Rm < Shell
-      desc 'Run the `rm` shell command in your homedir'
+      desc 'Run the `rm` shell command in your workspace'
 
       def command = 'rm'
     end

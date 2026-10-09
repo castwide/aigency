@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Aigency
-  module Homedir
+  module Workspace
     module Helpers
       module_function
 
@@ -9,19 +9,19 @@ module Aigency
       #   @abstract
       #   @return [Aigency::Aigent]
 
-      # Expand a path relative to the aigent's homedir.
+      # Expand a path relative to the aigent's workspace.
       #
-      # @raise [PathError] if the expanded path is not inside the homedir
+      # @raise [PathError] if the expanded path is not inside the workspace
       # @param path [String]
       # @return [String]
-      def expand_in_homedir(path)
-        homedir = aigent.data('homedir')
-        resolved = File.expand_path(path, homedir)
-        return resolved if resolved == homedir || resolved.start_with?("#{homedir}/")
-        raise PathError, "Permission denied: `#{path}` is not relative to your homedir"
+      def expand_in_workspace(path)
+        workspace = aigent.data('workspace')
+        resolved = File.expand_path(path, workspace)
+        return resolved if resolved == workspace || resolved.start_with?("#{workspace}/")
+        raise PathError, "Permission denied: `#{path}` is not relative to your workspace"
       end
 
-      # @raise [PathError] if the expanded path is not inside the homedir
+      # @raise [PathError] if the expanded path is not inside the workspace
       # @param arguments [Array<String>]
       # @param start [Integer]
       # @return [void]
@@ -31,16 +31,16 @@ module Aigency
         unless glued_shorts.empty?
           raise PathError, "Permission denied: glued short options (#{glued_shorts.inspect}) are not allowed"
         end
-        homedir = aigent.data('homedir')
+        workspace = aigent.data('workspace')
         path_arguments(arguments).each do |arg|
           if !arg.start_with?('-')
             current += 1
             next unless current > start
           end
           path = split_path_part(arg)
-          resolved = File.expand_path(path, homedir)
-          next if resolved == homedir || resolved.start_with?("#{homedir}/")
-          raise PathError, "Permission denied: `#{path}` is not relative to your homedir"
+          resolved = File.expand_path(path, workspace)
+          next if resolved == workspace || resolved.start_with?("#{workspace}/")
+          raise PathError, "Permission denied: `#{path}` is not relative to your workspace"
         end
       end
 

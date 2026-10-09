@@ -13,7 +13,7 @@ require 'aigency/shell'
 
 # Extensions
 # require 'aigency/workspace'
-require 'aigency/homedir'
+require 'aigency/workspace'
 require 'aigency/docker'
 
 module Aigency

@@ -20,5 +20,14 @@ module Aigency
       FileUtils.mkdir(directory) unless File.directory?(directory)
       FileUtils.copy_entry(File.join(GEM_PATH, 'scaffold'), directory)
     end
+
+    # desc "setup PLUGIN [...PLUGIN]", "Initialize plugin files"
+    # option :all, type: :boolean, alias: :a, description: "Set up all plugins", default: false
+    # option :overwrite, type: :boolean, alias: :o, description: "Overwrite existing files", default: false
+    # def setup *plugins
+    #   # @todo Assuming all for now
+    #   aigent = Aigent.new(aigent)
+    #   aigent.setup
+    # end
   end
 end

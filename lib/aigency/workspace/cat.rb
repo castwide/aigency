@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Aigency
-  module Homedir
+  module Workspace
     class Cat < Shell
-      desc 'Run the `cat` shell command in your homedir'
+      desc 'Run the `cat` shell command in your workspace'
 
       def command = 'cat'
     end

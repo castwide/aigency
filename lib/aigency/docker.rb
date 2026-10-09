@@ -7,7 +7,7 @@ module Aigency
     Plugin.register Plugin.new(
       'docker',
       tools: [Compose::Run],
-      directories: 'data/homedir'
+      directories: 'data/workspace'
     )
   end
 end

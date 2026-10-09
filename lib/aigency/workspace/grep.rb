@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Aigency
-  module Homedir
+  module Workspace
     class Grep < Shell
-      desc 'Run the `grep` shell command in your homedir'
+      desc 'Run the `grep` shell command in your workspace'
 
       def command = 'grep'
 

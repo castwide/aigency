@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Aigency
-  module Homedir
+  module Workspace
     class Ls < Shell
-      desc 'Run the `ls` shell command in your homedir'
+      desc 'Run the `ls` shell command in your workspace'
 
       def command = 'ls'
     end

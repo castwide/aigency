@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Aigency
-  module Homedir
+  module Workspace
     class Wc < Shell
-      desc 'Run the `wc` shell command in your homedir'
+      desc 'Run the `wc` shell command in your workspace'
 
       def command = 'wc'
 

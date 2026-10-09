@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Aigency
-  module Homedir
+  module Workspace
     class Cp < Shell
-      desc 'Run the `cp` shell command in your homedir'
+      desc 'Run the `cp` shell command in your workspace'
 
       def command = 'cp'
     end

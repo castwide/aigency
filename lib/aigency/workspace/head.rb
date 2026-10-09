@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Aigency
-  module Homedir
+  module Workspace
     class Head < Shell
-      desc 'Run the `head` shell command in your homedir'
+      desc 'Run the `head` shell command in your workspace'
 
       def command = 'head'
     end

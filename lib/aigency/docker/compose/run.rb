@@ -6,7 +6,7 @@ module Aigency
   module Docker
     module Compose
       class Run < Aigency::Tool
-        desc 'Run a shell command in your homedir using a sandboxed container'
+        desc 'Run a shell command in your workspace using a sandboxed container'
 
         params do
           string :command, description: "The complete command to execute", required: true

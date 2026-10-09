@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Aigency::Homedir::Grep do
+RSpec.describe Aigency::Workspace::Grep do
   let(:aigent_directory) { File.join('spec', 'fixtures', 'aigent') }
   let(:aigent) { Aigency::Aigent.new(aigent_directory) }
 
