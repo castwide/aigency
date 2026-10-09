@@ -2,6 +2,7 @@
 
 require 'fileutils'
 require 'yaml'
+require 'set'
 
 module Aigency
   class Aigent
@@ -93,33 +94,7 @@ module Aigency
     # @param only [Array<String>] Limit the tools being configured
     # @param overwrite [Boolean] Replace existing configs if true
     def setup(only: [], overwrite: false)
-      only = [only].flatten.compact
-      config_count = 0
-      Tools.config_map.each do |name, text|
-        next unless only.empty? || only.include?(name)
-
-        dir = directory('config')
-        FileUtils.mkdir_p dir
-        path = File.join(dir, "#{name}.yml")
-        if overwrite || !File.file?(path)
-          doing = File.file?(path) ?  'Overwriting' : 'Writing new'
-          log.puts "#{doing} config for #{name}"
-          File.write path, text
-          config_count += 1
-        else
-          log.puts "Config for #{name} exists, skipping"
-        end
-      end
-      dir_count = 0
-      Tools.directories.each do |path|
-        absolute = directory(path)
-        next if File.directory?(absolute)
-
-        FileUtils.mkdir_p absolute
-        dir_count += 1
-      end
-      log.puts "#{config_count} config files initialized."
-      log.puts "#{dir_count} directories created."
+      plugins.each { |plugin| boot plugin }
     end
 
     # Run code in an exclusive lock
@@ -160,6 +135,7 @@ module Aigency
       @instructions ||= build_instructions([])
     end
 
+    # @return [Array<Plugin>]
     def plugins
       config('aigent').fetch('plugins', [])
                       .map { |name| Plugin.registry[name] }
@@ -170,6 +146,37 @@ module Aigency
     end
 
     private
+
+    # @param plugin [Plugin]
+    def boot(plugin)
+      unless plugin.config.empty?
+        config_file = File.absolute_path("#{plugin.name}.yml", directory)
+        if File.exist?(config_file)
+          log.puts "File #{plugin.name}.yml exists, skipping"
+        else
+          log.puts "Creating #{plugin.name}.yml"
+          File.write config_file, plugin.config
+        end
+      end
+      plugin.directories.each do |dir|
+        absolute = File.absolute_path(dir, directory)
+        if File.directory?(absolute)
+          log.puts "Directory #{dir} exists, skipping"
+        else
+          log.puts "Creating #{dir}"
+          FileUtils.mkdir_p absolute
+        end
+      end
+      plugin.files.each do |file, content|
+        absolute = File.absolute_path(file, directory)
+        if File.exist?(absolute)
+          log.puts "File #{file} exists, skipping"
+        else
+          log.puts "Creating #{file}"
+          File.write absolute, content
+        end
+      end
+    end
 
     def configs
       @configs ||= {}

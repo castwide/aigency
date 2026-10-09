@@ -1,6 +1,7 @@
-name: an Aigent
+name: Aigent
 openai_api_base: ${OPENAI_API_BASE}
 openai_api_key: ${OPENAI_API_KEY}
 # max_tokens: 65536
-# require:
-#   - aigency-example
+# plugins:
+#   - sandbox
+#   - workspace
