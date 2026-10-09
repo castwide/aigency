@@ -2,8 +2,6 @@
 
 module Aigency
   module Workspace
-    class PathError < ArgumentError; end
-
     require 'aigency/workspace/helpers'
     require 'aigency/workspace/shell'
     require 'aigency/workspace/cat'

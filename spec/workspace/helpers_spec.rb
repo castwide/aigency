@@ -16,7 +16,7 @@ RSpec.describe Aigency::Workspace::Helpers do
     end
 
     it 'rejects .. that resolves outside of workspace' do
-      expect { described_class.validate_path_arguments(['../foo']) }.to raise_error(Aigency::Workspace::PathError)
+      expect { described_class.validate_path_arguments(['../foo']) }.to raise_error(Aigency::PathError)
     end
 
     it 'allows relative paths in --arg=path' do
@@ -24,15 +24,15 @@ RSpec.describe Aigency::Workspace::Helpers do
     end
 
     it 'rejects invalid paths in --arg=path' do
-      expect { described_class.validate_path_arguments(['--arg=/foo/bar/baz.txt']) }.to raise_error(Aigency::Workspace::PathError)
+      expect { described_class.validate_path_arguments(['--arg=/foo/bar/baz.txt']) }.to raise_error(Aigency::PathError)
     end
 
     it 'rejects invalid paths in glued short options' do
-      expect { described_class.validate_path_arguments(['-r/foo']) }.to raise_error(Aigency::Workspace::PathError)
+      expect { described_class.validate_path_arguments(['-r/foo']) }.to raise_error(Aigency::PathError)
     end
 
     it 'rejects invalid paths in clustered glued short options' do
-      expect { described_class.validate_path_arguments(['-tvr/foo']) }.to raise_error(Aigency::Workspace::PathError)
+      expect { described_class.validate_path_arguments(['-tvr/foo']) }.to raise_error(Aigency::PathError)
     end
   end
 end

@@ -3,11 +3,13 @@
 module Aigency
   module Tempdir
     class Write < Tool
+      include Helpers
+
       desc "Write a file in the temp directory"
 
       def execute(filename:, content:)
         aigent.log.puts "[Tempdir::Write] #{filename}"
-        absolute_path = File.join(PATH, filename)
+        absolute_path = expand_in_tempdir(filename)
         File.write absolute_path, content
         {
           success: true,

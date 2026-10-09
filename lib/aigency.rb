@@ -3,6 +3,8 @@
 require 'ruby_llm'
 
 module Aigency
+  class PathError < ArgumentError; end
+
   GEM_PATH = File.absolute_path(File.join(__dir__, '..'))
 
   # Core

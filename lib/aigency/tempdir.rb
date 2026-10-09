@@ -5,6 +5,7 @@ require 'fileutils'
 
 module Aigency
   module Tempdir
+    require 'aigency/tempdir/helpers'
     require 'aigency/tempdir/list'
     require 'aigency/tempdir/read'
     require 'aigency/tempdir/write'
