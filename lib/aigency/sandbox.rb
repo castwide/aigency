@@ -10,7 +10,7 @@ module Aigency
       directories: ['data/sandbox', 'data/sandbox_ssh'],
       files: {
         'Dockerfile' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'Dockerfile')),
-        'docker-compose.yml' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'docker-compose')),
+        'docker-compose.yml' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'docker-compose.yml')),
         'squid.conf' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'squid.conf')),
         'data/sandbox_ssh/config' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'ssh_config'))
       },
