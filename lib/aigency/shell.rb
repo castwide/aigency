@@ -18,7 +18,7 @@ module Aigency
         end
       end
       FileUtils.mkdir(directory) unless File.directory?(directory)
-      FileUtils.copy_entry(File.join(GEM_PATH, 'scaffold'), directory)
+      FileUtils.copy_entry(File.join(GEM_PATH, 'scaffold', 'aigent'), directory)
     end
 
     # desc "setup PLUGIN [...PLUGIN]", "Initialize plugin files"

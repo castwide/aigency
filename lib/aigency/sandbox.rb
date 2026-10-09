@@ -9,10 +9,10 @@ module Aigency
       tools: [Sandbox::Exec],
       directories: ['data/sandbox', 'data/sandbox_ssh'],
       files: {
-        'Dockerfile' => File.read(File.join(__dir__, 'sandbox', 'Dockerfile.tpl')),
-        'docker-compose.yml' => File.read(File.join(__dir__, 'sandbox', 'docker-compose.yml.tpl')),
-        'squid.conf' => File.read(File.join(__dir__, 'sandbox', 'squid.conf.tpl')),
-        'data/sandbox_ssh/config' => File.read(File.join(__dir__, 'sandbox', 'ssh_config.tpl'))
+        'Dockerfile' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'Dockerfile')),
+        'docker-compose.yml' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'docker-compose')),
+        'squid.conf' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'squid.conf')),
+        'data/sandbox_ssh/config' => File.read(File.join(GEM_PATH, 'scaffold', 'sandbox', 'ssh_config'))
       },
       config: <<~FILE
         prompt: "The sandbox tools provide access to a Docker container."
