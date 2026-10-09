@@ -13,7 +13,8 @@ module Aigency
   require 'aigency/plugin'
   require 'aigency/shell'
 
-  # Extensions
-  require 'aigency/workspace'
+  # Plugins and Tools
   require 'aigency/sandbox'
+  require 'aigency/tempdir'
+  require 'aigency/workspace'
 end
