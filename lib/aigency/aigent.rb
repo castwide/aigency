@@ -91,9 +91,8 @@ module Aigency
 
     # Initialize the aigent's plugin configurations.
     #
-    # @param only [Array<String>] Limit the tools being configured
-    # @param overwrite [Boolean] Replace existing configs if true
-    def setup(only: [], overwrite: false)
+    # @return [void]
+    def setup
       plugins.each { |plugin| boot plugin }
     end
 
