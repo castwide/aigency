@@ -3,9 +3,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    networks: [sandbox]
     volumes:
       - ./data/sandbox:/sandbox
-      - ./data/sandbox_ssh:/sandbox/.ssh:ro
+      - ./data/sandbox_ssh:/sandbox/.ssh
     working_dir: /sandbox
     command: ["sleep", "infinity"]
 

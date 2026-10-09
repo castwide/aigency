@@ -5,6 +5,7 @@ RUN apk add --no-cache \
       musl-dev \
       linux-headers \
       openssh \
+      netcat-openbsd \
       git \
       curl
 
