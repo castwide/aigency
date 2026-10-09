@@ -20,7 +20,10 @@ module Aigency
     Plugin.register Plugin.new(
       'workspace',
       directories: ['data/workspace'],
-      tools: [Cat, Cp, Diff, Grep, Ls, Mkdir, Mv, Rm, Wc, Write]
+      tools: [Cat, Cp, Diff, Grep, Ls, Mkdir, Mv, Rm, Wc, Write],
+      config: <<~FILE
+        prompt: "The workspace tools provide access to a readable and writeable directory."
+      FILE
     )
   end
 end

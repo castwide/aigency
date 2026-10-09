@@ -12,7 +12,10 @@ module Aigency
         'Dockerfile' => File.read(File.join(__dir__, 'sandbox', 'Dockerfile.tpl')),
         'docker-compose.yml' => File.read(File.join(__dir__, 'sandbox', 'docker-compose.yml.tpl')),
         'squid.conf' => File.read(File.join(__dir__, 'sandbox', 'squid.conf.tpl'))
-      }
+      },
+      config: <<~FILE
+        prompt: "The sandbox tools provide access to a Docker container."
+      FILE
     )
   end
 end
