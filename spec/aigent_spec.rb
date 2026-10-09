@@ -87,13 +87,13 @@ RSpec.describe Aigency::Aigent do
 
   describe '#plugins' do
     it 'returns configured plugins' do
-      expect(aigent.plugins.map(&:name)).to eq(['workspace', 'docker'])
+      expect(aigent.plugins.map(&:name)).to eq(['workspace', 'sandbox'])
     end
   end
 
   describe '#tools' do
     let(:all_tools) {
-      [Aigency::Workspace::Cat, Aigency::Workspace::Cp, Aigency::Workspace::Diff, Aigency::Workspace::Grep, Aigency::Workspace::Ls, Aigency::Workspace::Mkdir, Aigency::Workspace::Mv, Aigency::Workspace::Rm, Aigency::Workspace::Wc, Aigency::Workspace::Write, Aigency::Docker::Compose::Run]
+      [Aigency::Workspace::Cat, Aigency::Workspace::Cp, Aigency::Workspace::Diff, Aigency::Workspace::Grep, Aigency::Workspace::Ls, Aigency::Workspace::Mkdir, Aigency::Workspace::Mv, Aigency::Workspace::Rm, Aigency::Workspace::Wc, Aigency::Workspace::Write, Aigency::Sandbox::Exec]
     }
 
     it 'reads tools from plugins' do

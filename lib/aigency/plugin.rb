@@ -2,11 +2,12 @@
 
 module Aigency
   class Plugin
-    attr_reader :name, :tools, :directories, :files, :plugins
+    attr_reader :name, :config, :tools, :directories, :files, :plugins
 
-    def initialize name, tools: [], directories: [], files: {}, plugins: []
+    def initialize name, tools: [], config: '', directories: [], files: {}, plugins: []
       raise "A plugin named '#{name}' already exists" if self.class.registry.key?(name)
       @name = name
+      @config = config
       @tools = tools
       @directories = directories
       @files = files

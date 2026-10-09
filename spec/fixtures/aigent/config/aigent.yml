@@ -4,4 +4,4 @@ name: 'Example Aigent'
 prompt: 'How to use example'
 plugins:
   - workspace
-  - docker
+  - sandbox

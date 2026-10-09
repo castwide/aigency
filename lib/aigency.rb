@@ -14,7 +14,8 @@ require 'aigency/shell'
 # Extensions
 # require 'aigency/workspace'
 require 'aigency/workspace'
-require 'aigency/docker'
+# require 'aigency/docker'
+require 'aigency/sandbox'
 
 module Aigency
   GEM_PATH = File.absolute_path(File.join(__dir__, '..'))
