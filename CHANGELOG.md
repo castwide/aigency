@@ -1,3 +1,7 @@
+## 0.3.0 - October 9, 2026
+- New plugin architecture
+- Workspace and Sandbox plugins
+
 ## 0.2.0 - October 2, 2026
 - Log token usage
 - Stale code
