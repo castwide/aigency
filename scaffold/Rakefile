@@ -23,7 +23,7 @@ task :say, [:text] do |_, args|
   aigent.stream args[:text]
 end
 
-desc "Set up aigent configurations"
+desc "Set up aigent plugins"
 task :setup do
   aigent = Aigency::Aigent.new('.')
   aigent.setup
