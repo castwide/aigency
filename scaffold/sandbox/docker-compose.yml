@@ -4,6 +4,9 @@ services:
       context: .
       dockerfile: Dockerfile
     networks: [sandbox]
+    restart: unless-stopped
+    depends_on:
+      - egress
     volumes:
       - ./data/sandbox:/sandbox
       - ./data/sandbox_ssh:/sandbox/.ssh
