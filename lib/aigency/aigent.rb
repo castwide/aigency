@@ -12,7 +12,6 @@ module Aigency
     def initialize(directory)
       @base_directory = File.absolute_path(directory)
       @log = $stdout
-      load_requires
     end
 
     # @return [String]
@@ -223,14 +222,6 @@ module Aigency
       #   a corresponding plugin?
       plugins.map { |plugin| config(plugin.name)['prompt'] }
              .compact
-    end
-
-    def load_requires
-      read_requires.each { |name| require name }
-    end
-
-    def read_requires
-      config('aigent')['require'] || []
     end
 
     def max_tokens
