@@ -1,7 +1,6 @@
 require "bundler/setup"
-require 'yaml'
 require 'dotenv/load'
-require 'aigency'
+Bundler.require(:default)
 
 desc "Run a prompt from a file"
 task :load, [:filename] do |_, args|
