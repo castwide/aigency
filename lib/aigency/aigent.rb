@@ -239,7 +239,7 @@ module Aigency
   end
 
   Plugin.register Plugin.new(
-    name: 'aigent',
-    directories: 'data/chats', 'data/logs'
+    'aigent',
+    directories: ['data/chats', 'data/logs']
   )
 end

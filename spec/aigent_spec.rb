@@ -87,7 +87,7 @@ RSpec.describe Aigency::Aigent do
 
   describe '#plugins' do
     it 'returns configured plugins' do
-      expect(aigent.plugins.map(&:name)).to eq(['workspace', 'sandbox'])
+      expect(aigent.plugins.map(&:name)).to eq(['aigent', 'workspace', 'sandbox'])
     end
   end
 
