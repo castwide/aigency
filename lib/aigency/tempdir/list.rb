@@ -3,13 +3,13 @@
 module Aigency
   module Tempdir
     class List < Tool
-      desc "List the absolute paths of files in the temp directory"
+      desc "List all files in the temp directory"
 
       def execute
         aigent.log.puts "[Tempdir::List]"
         {
           success: true,
-          absolute_paths: Dir.glob(File.join(PATH, '*'))
+          absolute_paths: Dir.glob(File.join(PATH, '**', '*'))
         }
       end
     end
