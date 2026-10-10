@@ -136,6 +136,8 @@ module Aigency
     # @return [Array<Plugin>]
     def plugins
       config('aigent').fetch('plugins', [])
+                      .unshift('aigent')
+                      .uniq
                       .map { |name| Plugin.registry[name] }
     end
 
@@ -235,4 +237,9 @@ module Aigency
       end
     end
   end
+
+  Plugin.register Plugin.new(
+    name: 'aigent',
+    directories: 'data/chats', 'data/logs'
+  )
 end
