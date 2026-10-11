@@ -41,9 +41,10 @@ aigency enlist
 cd aigent
 bundle install
 rake setup
+cp .env.example .env
 ```
 
-The bare minimum configuration you need to do is setting `openai_api_base` and `openai_api_key` in `config/aigent.yml`.
+The bare minimum configuration you need to do is setting `OPENAI_API_BASE` and `OPENAI_API_KEY` in `.env`.
 
 Test the aigent with the `rake say` task.
 
@@ -51,4 +52,4 @@ Test the aigent with the `rake say` task.
 rake say["How many fibers are intertwined in a shredded wheat biscuit?"]
 ```
 
-See the aigent's README (scaffold/README.md in this codebase) for more information.
+See the aigent's README for more information (`README.md` in your aigent directory or `scaffold/README.md` in this codebase).
