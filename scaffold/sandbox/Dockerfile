@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache \
+RUN apk update && apk upgrade && apk add --no-cache \
       build-base \
       musl-dev \
       linux-headers \
