@@ -240,7 +240,7 @@ module Aigency
 
   Plugin.register Plugin.new(
     'aigent',
-    directories: ['data/chats', 'data/logs'],
+    directories: ['data/chats', 'data/log'],
     rakefile: File.join(__dir__, 'aigent.rake')
   )
 end
