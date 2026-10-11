@@ -2,6 +2,8 @@ require "bundler/setup"
 require 'dotenv/load'
 Bundler.require(:default)
 
-# Rake tasks for aigents and plugins are installed in the `rakelib` directory
-# Run `rake --tasks` for a list
-# Custom rake tasks can be added below
+Aigency::Rake.define('.')
+
+# Run `rake --tasks` for a list of tasks provided by aigent plugins.
+
+# Custom rake tasks can be added below.

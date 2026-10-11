@@ -19,6 +19,11 @@
 
 # Learn more: http://github.com/javan/whenever
 
+job_type :rake, "cd :path && :environment_variable=:environment :bundle_command rake :task :output"
+
+set :output, File.join(Dir.pwd, 'data', 'log', 'cron.log')
+
+# Example job: run a prompt from a file named `DAILY.md` once a day
 # every 1.day do
 #   rake "load[DAILY.md]"
 # end
