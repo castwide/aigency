@@ -2,7 +2,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./sandbox/Dockerfile
     networks: [sandbox]
     restart: unless-stopped
     depends_on:
@@ -24,7 +24,7 @@ services:
     image: ubuntu/squid
     networks: [sandbox, outside]
     volumes:
-      - ./squid.conf:/etc/squid/squid.conf:ro
+      - ./sandbox/squid.conf:/etc/squid/squid.conf:ro
 
 networks:
    sandbox:
