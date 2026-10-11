@@ -11,6 +11,13 @@ services:
       - ./data/sandbox:/sandbox
       - ./data/sandbox_ssh:/sandbox/.ssh
     working_dir: /sandbox
+    environment:
+      - http_proxy=http://egress:3128
+      - https_proxy=http://egress:3128
+      - HTTP_PROXY=http://egress:3128
+      - HTTPS_PROXY=http://egress:3128
+      - no_proxy=localhost,127.0.0.1,::1
+      - NO_PROXY=localhost,127.0.0.1,::1
     command: ["sleep", "infinity"]
 
   egress:
