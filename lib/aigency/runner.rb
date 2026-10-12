@@ -11,15 +11,7 @@ module Aigency
 
     desc "load FILE", "Load a prompt from a file"
     def load(file)
-      aigent.nonblock do
-        filename = File.join('data', 'chats', "#{Time.now.strftime("%Y-%m-%d_%H%M%S")}_load_#{file.gsub('/', '_')}.txt")
-        File.open(filename, 'w') do |file|
-          aigent.load args[:filename], out: file
-        rescue StandardError => e
-          file.puts "[#{e.class}]: #{e.message}"
-          file.puts e.backtrace
-        end
-      end
+      aigent.load filename
     end
 
     desc "setup", "Initialize aigent plugins"
