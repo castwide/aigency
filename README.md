@@ -46,10 +46,10 @@ cp .env.example .env
 
 The bare minimum configuration you need to do is setting `OPENAI_API_BASE` and `OPENAI_API_KEY` in `.env`.
 
-Test the aigent with the `rake say` task.
+Test the aigent with the `say` command.
 
 ```bash
-rake say["How many fibers are intertwined in a shredded wheat biscuit?"]
+bin/aigent say "How many fibers are intertwined in a shredded wheat biscuit?"
 ```
 
 See the aigent's README for more information (`README.md` in your aigent directory or `scaffold/README.md` in this codebase).

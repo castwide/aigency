@@ -50,10 +50,10 @@ rake setup
 
 ### Interactive Mode
 
-Talk to your aigent using the Rake task:
+Talk to your aigent using the `say` command:
 
 ```bash
-rake say["How many fibers are intertwined in a shredded wheat biscuit?"]
+bin/aigent say "How many fibers are intertwined in a shredded wheat biscuit?"
 ```
 
 ### Scheduling Tasks
