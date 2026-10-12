@@ -4,9 +4,11 @@ require 'fileutils'
 require 'thor'
 
 module Aigency
+  # Top-level aigency commands for creating aigents.
+  #
   class Shell < Thor
     map %i[new] => :enlist
-    desc "enlist [DIRECTORY]", "Enable the current user as an aigent"
+    desc "enlist [DIRECTORY]", "Create an aigent directory"
     def enlist directory = 'aigent'
       puts "Installing aigent at #{directory}"
       if File.exist?(directory)
@@ -18,16 +20,7 @@ module Aigency
         end
       end
       FileUtils.mkdir(directory) unless File.directory?(directory)
-      FileUtils.copy_entry(File.join(GEM_PATH, 'scaffold', 'aigent'), directory)
+      FileUtils.copy_entry(File.join(GEM_PATH, 'scaffold', 'enlist'), directory)
     end
-
-    # desc "setup PLUGIN [...PLUGIN]", "Initialize plugin files"
-    # option :all, type: :boolean, alias: :a, description: "Set up all plugins", default: false
-    # option :overwrite, type: :boolean, alias: :o, description: "Overwrite existing files", default: false
-    # def setup *plugins
-    #   # @todo Assuming all for now
-    #   aigent = Aigent.new(aigent)
-    #   aigent.setup
-    # end
   end
 end

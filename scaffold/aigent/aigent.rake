@@ -14,12 +14,6 @@ task :load, [:filename] do |_, args|
   end
 end
 
-desc "Talk to the aigent"
-task :say, [:text] do |_, args|
-  aigent = Aigency::Aigent.new('.')
-  aigent.stream args[:text]
-end
-
 desc "Set up aigent plugins"
 task :setup do
   aigent = Aigency::Aigent.new('.')

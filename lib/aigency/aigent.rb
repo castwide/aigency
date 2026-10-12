@@ -241,6 +241,6 @@ module Aigency
   Plugin.register Plugin.new(
     'aigent',
     directories: ['data/chats', 'data/log'],
-    rakefile: File.join(__dir__, 'aigent.rake')
+    rakefile: File.join(GEM_PATH, 'scaffold', 'aigent', 'aigent.rake')
   )
 end
