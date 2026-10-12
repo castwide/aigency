@@ -22,7 +22,8 @@ RSpec.describe Aigency::Workspace::Grep do
     reader = described_class.new(aigent)
     result = reader.execute(arguments: ['--help'])
     expect(result[:success]).to be(true)
-    expect(result[:stdout]).to include('Usage: grep')
+    # Output may go to either stdout or stderr depending on environment
+    expect(result[:stdout] + result[:stderr]).to include('Usage: grep')
   end
 
   it 'restricts arguments' do
