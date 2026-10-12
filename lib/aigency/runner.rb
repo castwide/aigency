@@ -22,6 +22,7 @@ module Aigency
       end
     end
 
+    desc "setup", "Initialize aigent plugins"
     def setup
       aigent.setup
     end
