@@ -93,7 +93,7 @@ RSpec.describe Aigency::Aigent do
 
   describe '#tools' do
     let(:all_tools) {
-      [Aigency::Workspace::Cat, Aigency::Workspace::Cp, Aigency::Workspace::Diff, Aigency::Workspace::Grep, Aigency::Workspace::Ls, Aigency::Workspace::Mkdir, Aigency::Workspace::Mv, Aigency::Workspace::Rm, Aigency::Workspace::Wc, Aigency::Workspace::Write, Aigency::Sandbox::Exec]
+      [Aigency::Workspace::Cat, Aigency::Workspace::Cp, Aigency::Workspace::Diff, Aigency::Workspace::Grep, Aigency::Workspace::Ls, Aigency::Workspace::Mkdir, Aigency::Workspace::Mv, Aigency::Workspace::Rm, Aigency::Workspace::Wc, Aigency::Workspace::Write, Aigency::Sandbox::Exec, Aigency::Aigent::CurrentTime]
     }
 
     it 'reads tools from plugins' do
