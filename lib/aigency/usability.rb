@@ -2,6 +2,7 @@
 
 module Aigency
   module Usability
+    # @return [Aigent]
     attr_reader :aigent
 
     def initialize(aigent)
