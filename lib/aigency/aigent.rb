@@ -6,6 +6,8 @@ require 'set'
 
 module Aigency
   class Aigent
+    require 'aigency/aigent/current_time'
+
     # @return [IO]
     attr_reader :log
 
@@ -236,11 +238,12 @@ module Aigency
         config.openai_api_key = config('aigent')['openai_api_key']
       end
     end
-  end
 
-  Plugin.register Plugin.new(
-    'aigent',
-    directories: ['data/chats', 'data/log'],
-    rakefile: File.join(GEM_PATH, 'scaffold', 'aigent', 'aigent.rake')
-  )
+    Plugin.register Plugin.new(
+      'aigent',
+      tools: [CurrentTime],
+      directories: ['data/chats', 'data/log'],
+      rakefile: File.join(GEM_PATH, 'scaffold', 'aigent', 'aigent.rake')
+    )
+  end
 end
