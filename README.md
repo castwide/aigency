@@ -52,4 +52,4 @@ Test the aigent with the `say` command.
 bin/aigent say "How many fibers are intertwined in a shredded wheat biscuit?"
 ```
 
-See the aigent's README for more information (`README.md` in your aigent directory or `scaffold/README.md` in this codebase).
+See the aigent's README for more information (`README.md` in your aigent directory or `scaffold/enlist/README.md` in this codebase).

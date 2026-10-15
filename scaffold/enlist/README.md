@@ -38,7 +38,7 @@ The `workspace` plugin gives your aigent a directory where it can manage its own
 
 The `sandbox` plugin provides a container where the aigent can not only manage files, but also run commands and scripts.
 
-The `workspace` plugin is sufficient for many aigents. Switch to `sandbox` if you need your aigent to perform complex tasks.
+The `workspace` plugin is sufficient for many aigents. Switch to `sandbox` if you need your aigent to perform software development or other complex tasks.
 
 ### 5. Run setup
 
