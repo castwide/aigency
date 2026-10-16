@@ -15,7 +15,6 @@ module Aigency
   require 'aigency/aigent'
   require 'aigency/shell'
   require 'aigency/rake'
-  require 'aigency/runner'
 
   # Plugins and Tools
   require 'aigency/sandbox'

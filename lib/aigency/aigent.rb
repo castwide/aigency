@@ -7,6 +7,7 @@ require 'set'
 module Aigency
   class Aigent
     require 'aigency/aigent/current_time'
+    require 'aigency/aigent/shell'
 
     # @return [IO]
     attr_reader :log
