@@ -69,6 +69,7 @@ module Aigency
     # @param out [IO]
     # @return [RubyLLM::Chat]
     def stream text, *extra, attach: [], except: [], out: $stdout
+      raise 'oops'
       original_log = @log
       @log = out
       response = brief(*extra, except: except).ask text, with: attach do |chunk|
@@ -79,8 +80,9 @@ module Aigency
       @log.puts "Output tokens:   #{response.tokens.output}"
       response
     rescue StandardError => e
-      @log.puts "[#{e.class}] #{e.message}"
-      @log.puts e.backtrace
+      message = "[#{e.class}] #{e.message}\n" + e.backtrace.map { |line| "    #{line}\n" }.join
+      @log.puts message
+      File.write data('log', 'error.log'), "#{DateTime.now.iso8601} #{message}", mode: 'a'
     ensure
       @log = original_log
     end
