@@ -216,10 +216,10 @@ module Aigency
       @base_instructions ||= identity_file? ? File.read(identity_file) : "You are a helpful AI assistant."
     end
 
+    # @return [Array<String>]
     def build_instructions(extra)
-      [base_instructions].concat tool_prompts
-                         .concat extra
-                         .join("\n\n")
+      [base_instructions].concat(tool_prompts)
+                         .concat(extra)
     end
 
     def tool_prompts
