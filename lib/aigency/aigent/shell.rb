@@ -45,6 +45,7 @@ module Aigency
           file = Dir.glob(aigent.data('chats', '*.txt')).max { |file| File.mtime(file).to_i }
           cmd = ['tail', file, '-n', options[:lines].to_s]
           cmd.push '-f' if options[:follow]
+          puts "(#{file})"
           system *cmd
         else
           puts "No active chat stream."
