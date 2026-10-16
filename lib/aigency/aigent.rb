@@ -132,8 +132,9 @@ module Aigency
     end
     alias busy? locked?
 
+    # @return [String]
     def instructions
-      @instructions ||= build_instructions([])
+      @instructions ||= build_instructions([]).join("\n\n")
     end
 
     # @return [Array<Plugin>]
