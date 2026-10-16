@@ -37,6 +37,20 @@ module Aigency
         puts aigent.instructions
       end
 
+      desc "stream", "Tail the currently active chat stream"
+      option :follow, type: :boolean, aliases: :f, desc: "Follow the stream (tail -f)"
+      option :lines, type: :numeric, aliases: :n, desc: "Number of lines (tail -n)", default: 10
+      def stream
+        if aigent.busy?
+          file = Dir.glob(aigent.data('chats', '*.txt')).max { |file| File.mtime(file).to_i }
+          cmd = ['tail', file, '-n', options[:lines].to_s]
+          cmd.push '-f' if options[:follow]
+          system *cmd
+        else
+          puts "No active chat stream."
+        end
+      end
+
       private
 
       def aigent
