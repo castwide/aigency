@@ -32,7 +32,7 @@ module Aigency
         puts "Busy: #{aigent.busy?}"
       end
 
-      desc "instructions", "Get all instructions given to the aigent before the user prompt"
+      desc "instructions", "List all instructions given to the aigent before the user prompt"
       def instructions
         puts aigent.instructions
       end

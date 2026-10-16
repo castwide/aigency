@@ -218,7 +218,6 @@ module Aigency
 
     def build_instructions(extra)
       [base_instructions].concat tool_prompts
-                         .push "Today's date is #{DateTime.now.strftime('%B %e, %Y')}."
                          .concat extra
                          .join("\n\n")
     end
