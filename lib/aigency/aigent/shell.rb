@@ -39,7 +39,4 @@ module Aigency
       end
     end
   end
-
-  # @todo Temporary alias
-  Runner = Aigent::Shell
 end

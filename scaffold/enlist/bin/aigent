@@ -8,4 +8,4 @@ require "bundler/setup"
 require 'dotenv/load'
 Bundler.require(:default)
 
-Aigency::Runner.start(ARGV)
+Aigency::Aigent::Shell.start(ARGV)
