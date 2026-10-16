@@ -69,7 +69,6 @@ module Aigency
     # @param out [IO]
     # @return [RubyLLM::Chat]
     def stream text, *extra, attach: [], except: [], out: $stdout
-      raise 'oops'
       original_log = @log
       @log = out
       response = brief(*extra, except: except).ask text, with: attach do |chunk|
