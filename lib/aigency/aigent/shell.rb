@@ -32,7 +32,12 @@ module Aigency
         puts "Busy: #{aigent.busy?}"
       end
 
-      desc "instructions", "List all instructions given to the aigent before the user prompt"
+      desc "instructions", "List base instructions"
+      long_desc <<~DESC
+        Show all instructions that will be given to the aigent before the user
+        prompt. They typically include the IDENTITY.md file and any prompts injected
+        by installed plugins.
+      DESC
       def instructions
         puts aigent.instructions
       end
