@@ -40,6 +40,11 @@ module Aigency
       desc "stream", "Tail the currently active chat stream"
       option :follow, type: :boolean, aliases: :f, desc: "Follow the stream (tail -f)"
       option :lines, type: :numeric, aliases: :n, desc: "Number of lines (tail -n)", default: 10
+      long_desc <<~DESC
+        This is useful for monitoring non-interactive chat streams, e.g., chat sessions
+        that were started by cron jobs or rake tasks. It runs `tail` on the current chat
+        file in the aigent's data/chats folder.
+      DESC
       def stream
         if aigent.busy?
           file = Dir.glob(aigent.data('chats', '*.txt')).max { |file| File.mtime(file).to_i }
