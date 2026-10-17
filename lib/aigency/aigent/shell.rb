@@ -32,6 +32,9 @@ module Aigency
       desc "status", "Get the aigent's current status"
       def status
         puts "Busy: #{aigent.busy?}"
+        if aigent.busy?
+          puts "Process: #{File.read(aigent.data('lock'))}"
+        end
       end
 
       desc "instructions", "List base instructions"
@@ -58,22 +61,46 @@ module Aigency
           cmd = ['tail', file, '-n', options[:lines].to_s]
           cmd.push '-f' if options[:follow]
           puts "(#{file})"
-          system *cmd
+          exec *cmd
         else
           puts "No active chat stream."
         end
       end
 
-      def self.start(given_args = ARGV, config = {})
-        @plugins ||= Delegator.aigent.plugins.map do |plugin|
-          next unless plugin.shell
-          if all_commands.key?(plugin.name)
-            raise "Plugin '#{plugin.name}' cannot register CLI command '#{plugin.name}': already taken"
-          end
-          register(plugin.shell, plugin.name, "#{plugin.name} [SUBCOMMAND ...ARGS]", "#{plugin.name} plugin commands")
-          plugin
+      desc "kill", "Kill a blocking process"
+      long_desc <<~DESC
+        Kill the process that owns an exclusive lock on the aigent's data/lock file.
+      DESC
+      def kill
+        if aigent.busy?
+          pid = File.read(aigent.data('lock')).to_i
+          puts "Killing process #{pid}"
+          Process.kill 'TERM', pid
+        else
+          puts "No blocking process exists."
         end
-        super
+      end
+
+      class << self
+        def mounted? = false
+
+        def start(args = ARGV, config = {})
+          return super if mounted?
+          build('.').start(args, config)
+        end
+
+        def build(directory)
+          Class.new(self) do
+            def self.mounted? = true
+            Aigent.new(directory).plugins.each do |plugin|
+              next unless plugin.shell
+              if all_commands.key?(plugin.name)
+                raise "Plugin '#{plugin.name}' cannot register CLI command '#{plugin.name}': already taken"
+              end
+              register(plugin.shell, plugin.name, "#{plugin.name} [SUBCOMMAND ...ARGS]", "#{plugin.name} plugin commands")
+            end
+          end
+        end
       end
     end
   end

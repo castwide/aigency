@@ -101,7 +101,7 @@ module Aigency
 
     # Run code in an exclusive lock
     #
-    def lock(&block)
+    def block(&block)
       File.open(data('lock'), 'w') do |file|
         file.flock(File::LOCK_EX)
         file.write(Process.pid)
@@ -109,6 +109,8 @@ module Aigency
         block&.call
       end
     end
+    alias lock block
+    alias flock block
 
     # Run code if an exclusive lock is available or skip if a lock exists
     #
