@@ -2,10 +2,10 @@
 
 A framework for creating AI agents with RubyLLM.
 
-## Requierments
+## Requirements
 
 - Ruby 3.2+
-- Docker 29+
+- Docker 29+ (required for sandbox)
 
 (Note: Aigency is not tested on Windows. Some features are known to be Windows-incompatible.)
 
