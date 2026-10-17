@@ -2,7 +2,7 @@
 
 module Aigency
   module Workspace
-    class Ls < Shell
+    class Ls < Cmd
       desc 'Run the `ls` shell command in your workspace'
 
       def command = 'ls'

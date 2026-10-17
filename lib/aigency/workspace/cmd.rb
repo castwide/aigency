@@ -4,7 +4,7 @@ require 'open3'
 
 module Aigency
   module Workspace
-    class Shell < Tool
+    class Cmd < Tool
       include Helpers
 
       # @abstract

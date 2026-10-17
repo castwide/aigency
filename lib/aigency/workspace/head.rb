@@ -2,7 +2,7 @@
 
 module Aigency
   module Workspace
-    class Head < Shell
+    class Head < Cmd
       desc 'Run the `head` shell command in your workspace'
 
       def command = 'head'

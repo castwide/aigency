@@ -2,7 +2,7 @@
 
 module Aigency
   module Workspace
-    class Wc < Shell
+    class Wc < Cmd
       desc 'Run the `wc` shell command in your workspace'
 
       def command = 'wc'

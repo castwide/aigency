@@ -2,7 +2,7 @@
 
 module Aigency
   module Workspace
-    class Rm < Shell
+    class Rm < Cmd
       desc 'Run the `rm` shell command in your workspace'
 
       def command = 'rm'

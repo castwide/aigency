@@ -2,7 +2,7 @@
 
 module Aigency
   module Workspace
-    class Mkdir < Shell
+    class Mkdir < Cmd
       desc 'Run the `mkdir` shell command in your workspace'
 
       def command = 'mkdir'

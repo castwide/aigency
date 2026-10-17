@@ -2,7 +2,7 @@
 
 module Aigency
   module Workspace
-    class Grep < Shell
+    class Grep < Cmd
       desc 'Run the `grep` shell command in your workspace'
 
       def command = 'grep'

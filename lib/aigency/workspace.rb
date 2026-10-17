@@ -3,7 +3,7 @@
 module Aigency
   module Workspace
     require 'aigency/workspace/helpers'
-    require 'aigency/workspace/shell'
+    require 'aigency/workspace/cmd'
     require 'aigency/workspace/cat'
     require 'aigency/workspace/cp'
     require 'aigency/workspace/diff'

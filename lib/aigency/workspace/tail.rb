@@ -2,7 +2,7 @@
 
 module Aigency
   module Workspace
-    class Tail < Shell
+    class Tail < Cmd
       desc 'Run the `tail` shell command in your workspace'
 
       def command = 'tail'

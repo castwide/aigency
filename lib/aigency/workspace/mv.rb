@@ -2,7 +2,7 @@
 
 module Aigency
   module Workspace
-    class Mv < Shell
+    class Mv < Cmd
       desc 'Run the `mv` shell command in your workspace'
 
       def command = 'mv'
