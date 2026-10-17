@@ -11,6 +11,7 @@ module Aigency
   require 'aigency/version'
   require 'aigency/usability'
   require 'aigency/tool'
+  require 'aigency/delegator'
   require 'aigency/plugin'
   require 'aigency/aigent'
   require 'aigency/shell'

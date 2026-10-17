@@ -7,6 +7,8 @@ module Aigency
     # Commands that can be executed in aigent directories.
     #
     class Shell < Thor
+      include Delegator
+
       desc "say PROMPT", "Send a prompt to the aigent"
       def say(prompt)
         aigent.stream prompt
@@ -62,10 +64,16 @@ module Aigency
         end
       end
 
-      private
-
-      def aigent
-        @aigent ||= Aigency::Aigent.new('.')
+      def self.start(given_args = ARGV, config = {})
+        @plugins ||= Aigent.new(Dir.pwd).plugins.map do |plugin|
+          next unless plugin.shell
+          if all_commands.key?(plugin.name)
+            raise "Plugin '#{plugin.name}' cannot register CLI command '#{plugin.name}': already taken"
+          end
+          register(plugin.shell, plugin.name, "#{plugin.name} [SUBCOMMAND ...ARGS]", "#{plugin.name} plugin commands")
+          plugin
+        end
+        super
       end
     end
   end

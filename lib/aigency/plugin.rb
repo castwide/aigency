@@ -2,14 +2,16 @@
 
 module Aigency
   class Plugin
-    attr_reader :name, :config, :tools, :directories, :files, :rakefile
+    require 'aigency/plugin/shell'
+
+    attr_reader :name, :config, :tools, :directories, :files, :rakefile, :shell
 
     # @param name [String]
     # @param tools [Array<Class<Tool>>]
     # @param config [String]
     # @param directories [Array<String>]
     # @param files [Hash{String => String}]
-    def initialize name, tools: [], config: '', directories: [], files: {}, rakefile: nil
+    def initialize name, tools: [], config: '', directories: [], files: {}, rakefile: nil, shell: nil
       raise "A plugin named '#{name}' already exists" if self.class.registry.key?(name)
       @name = name
       @config = config
@@ -17,6 +19,7 @@ module Aigency
       @directories = directories
       @files = files
       @rakefile = rakefile
+      @shell = shell
       self.class.registry[name] = self
     end
 
