@@ -65,7 +65,7 @@ module Aigency
       end
 
       def self.start(given_args = ARGV, config = {})
-        @plugins ||= Aigent.new(Dir.pwd).plugins.map do |plugin|
+        @plugins ||= Delegator.aigent.plugins.map do |plugin|
           next unless plugin.shell
           if all_commands.key?(plugin.name)
             raise "Plugin '#{plugin.name}' cannot register CLI command '#{plugin.name}': already taken"
