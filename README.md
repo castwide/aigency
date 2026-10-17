@@ -27,15 +27,6 @@ gem 'aigency'
 
 ### Creating a New Aigent
 
-The recommended way to create an aigent is to give it a dedicated system user.
-
-```bash
-useradd aigent_user
-sudo su - aigent_user
-```
-
-Once you're logged in as the aigent user, create the aigent directory:
-
 ```bash
 aigency enlist
 cd aigent
