@@ -44,7 +44,7 @@ module Aigency
     # @param except [Array<Class<Tool>>] Tools to exclude from this chat
     # @return [RubyLLM::Chat]
     def brief(*extra, except: [])
-      chat = rubyllm_context.chat(provider: :openai)
+      chat = rubyllm_context.chat(provider: :openai, protocol: :chat_completions)
       (tools - except).each { |klass| chat.with_tools(klass.new(self)) }
       chat.with_instructions(build_instructions(extra).join, append: true)
       chat.with_provider_options(max_tokens: max_tokens)
@@ -71,9 +71,9 @@ module Aigency
     def stream text, *extra, attach: [], except: [], out: $stdout
       original_log = @log
       @log = out
-      response = brief(*extra, except: except).ask text, with: attach do |chunk|
-        @log.print chunk.thinking&.text
-      end
+      response = brief(*extra, except: except).ask text, with: attach #do |chunk|
+        # @log.print chunk.thinking&.text
+      #end
       @log.puts response.content
       @log.puts "Input tokens:    #{response.tokens.input}"
       @log.puts "Output tokens:   #{response.tokens.output}"
