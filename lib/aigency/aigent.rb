@@ -45,9 +45,9 @@ module Aigency
     # @return [RubyLLM::Chat]
     def brief(*extra, except: [])
       chat = rubyllm_context.chat(provider: :openai)
-      (tools - except).each { |klass| chat.with_tool(klass.new(self)) }
-      chat.with_instructions(build_instructions(extra), append: true)
-      chat.with_params(max_tokens: max_tokens)
+      (tools - except).each { |klass| chat.with_tools(klass.new(self)) }
+      chat.with_instructions(build_instructions(extra).join, append: true)
+      chat.with_provider_options(max_tokens: max_tokens)
     end
 
     # Prompt a chat with a file.
