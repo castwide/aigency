@@ -9,9 +9,10 @@ module Aigency
     require 'aigency/tempdir/list'
     require 'aigency/tempdir/read'
     require 'aigency/tempdir/write'
+    require 'aigency/tempdir/size'
 
     PATH = Dir.mktmpdir
-    TOOLS = [List, Read, Write]
+    TOOLS = [List, Read, Write, Size]
 
     at_exit { FileUtils.rm_rf PATH }
   end
