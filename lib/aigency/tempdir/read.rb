@@ -5,7 +5,11 @@ module Aigency
     class Read < Tool
       include Helpers
 
-      desc "Read a file in the temp directory"
+      description "Read a file in the temp directory"
+
+      parameters do
+        string :filename, description: "The file to read"
+      end
 
       def execute(filename:)
         aigent.log.puts "[Tempdir::Read] #{filename}"

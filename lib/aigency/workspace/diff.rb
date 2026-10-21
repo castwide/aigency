@@ -3,7 +3,7 @@
 module Aigency
   module Workspace
     class Diff < Cmd
-      desc 'Run the `diff` shell command in your workspace'
+      description 'Run the `diff` shell command in your workspace'
 
       def command = 'diff'
     end

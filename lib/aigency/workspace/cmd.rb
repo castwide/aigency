@@ -34,7 +34,7 @@ module Aigency
       end
 
       def self.inherited other
-        other.params do
+        other.parameters do
           string :directory, description: "The working directory relative to workspace", required: false
           array :arguments, of: :string, description: "Command arguments", required: false
         end

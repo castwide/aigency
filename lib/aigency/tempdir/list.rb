@@ -3,7 +3,7 @@
 module Aigency
   module Tempdir
     class List < Tool
-      desc "List all files in the temp directory"
+      description "List all files in the temp directory"
 
       def execute
         aigent.log.puts "[Tempdir::List]"

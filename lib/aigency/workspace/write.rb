@@ -10,9 +10,9 @@ module Aigency
     class Write < Tool
       include Helpers
 
-      desc 'Write or append to a file in the workspace'
+      description 'Write or append to a file in the workspace'
 
-      params do
+      parameters do
         string :filename, description: "The filename relative to the workspace", required: true
         string :content, description: "The data to write to the file", required: true
         string :append, description: "Append if true or overwrite if false", required: true

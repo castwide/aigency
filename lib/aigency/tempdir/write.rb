@@ -5,7 +5,12 @@ module Aigency
     class Write < Tool
       include Helpers
 
-      desc "Write a file in the temp directory"
+      description "Write a file in the temp directory"
+
+      parameters do
+        string :filename, description: "The filename to write"
+        string :content, description: "The file's content"
+      end
 
       def execute(filename:, content:)
         aigent.log.puts "[Tempdir::Write] #{filename}"

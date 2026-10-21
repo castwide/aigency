@@ -5,9 +5,9 @@ require 'date'
 module Aigency
   class Aigent
     class CurrentTime < Aigency::Tool
-      desc 'Get the current time'
+      description 'Get the current time'
 
-      params do
+      parameters do
         any_of :format, description: "Date/time format" do
           string enum: %w[iso8601 unix]
           'iso8601'

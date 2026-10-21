@@ -3,7 +3,7 @@
 module Aigency
   module Workspace
     class Cat < Cmd
-      desc 'Run the `cat` shell command in your workspace'
+      description 'Run the `cat` shell command in your workspace'
 
       def command = 'cat'
     end

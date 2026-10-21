@@ -8,9 +8,9 @@ module Aigency
       include Tempdir::Helpers
       include Workspace::Helpers
 
-      desc 'Copy a file from tempdir to workspace'
+      description 'Copy a file from tempdir to workspace'
 
-      params do
+      parameters do
         string :tempdir_source, description: "A source filename in tempdir", required: true
         string :workspace_dest, description: "A destination filename in workspace", required: true
       end

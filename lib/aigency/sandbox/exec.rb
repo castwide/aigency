@@ -5,9 +5,9 @@ require 'open3'
 module Aigency
   module Sandbox
     class Exec < Aigency::Tool
-      desc 'Run a shell command in your sandbox'
+      description 'Run a shell command in your sandbox'
 
-      params do
+      parameters do
         string :command, description: "The complete command to execute", required: true
       end
 

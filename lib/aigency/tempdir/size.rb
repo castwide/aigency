@@ -5,7 +5,11 @@ module Aigency
     class Size < Tool
       include Helpers
 
-      desc "Get the size of a file in the temp directory"
+      description "Get the size of a file in the temp directory"
+
+      parameters do
+        string :filename, description: "The file to measure"
+      end
 
       def execute(filename:)
         aigent.log.puts "[Tempdir::Read] #{filename}"
