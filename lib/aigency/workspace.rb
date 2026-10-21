@@ -14,11 +14,12 @@ module Aigency
     require 'aigency/workspace/rm'
     require 'aigency/workspace/wc'
     require 'aigency/workspace/write'
+    require 'aigency/workspace/copy_tempdir_file'
 
     Plugin.register Plugin.new(
       'workspace',
       directories: ['data/workspace'],
-      tools: [Cat, Cp, Diff, Grep, Ls, Mkdir, Mv, Rm, Wc, Write],
+      tools: [Cat, Cp, Diff, Grep, Ls, Mkdir, Mv, Rm, Wc, Write, CopyTempdirFile],
       config: <<~FILE
         prompt: "The workspace tools provide access to a readable and writeable directory."
       FILE
