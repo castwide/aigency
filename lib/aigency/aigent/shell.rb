@@ -31,6 +31,7 @@ module Aigency
 
       desc "status", "Get the aigent's current status"
       def status
+        puts "Name: #{aigent.config('aigent')['name']}"
         puts "Busy: #{aigent.busy?}"
         if aigent.busy?
           puts "Process: #{File.read(aigent.data('lock'))}"
