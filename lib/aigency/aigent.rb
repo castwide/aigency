@@ -44,7 +44,7 @@ module Aigency
     # @param except [Array<Class<Tool>>] Tools to exclude from this chat
     # @return [RubyLLM::Chat]
     def brief(*extra, except: [])
-      chat = rubyllm_context.chat(provider: :openai)
+      chat = rubyllm_context.chat(provider: :openai).with_thinking
       (tools - except).each { |klass| chat.with_tools(klass.new(self)) }
       chat.with_instructions(build_instructions(extra).join, append: true)
       chat.with_provider_options(max_tokens: max_tokens)
@@ -72,12 +72,19 @@ module Aigency
       original_log = @log
       @log = out
       response = brief(*extra, except: except).ask text, with: attach do |chunk|
+        # @todo Clean this up
         @log.print chunk.thinking&.text
-        @log.print chunk.content
+        # @log.print chunk.content
+        @log.print chunk.tool_calls&.inspect
       end
+      @log.puts response.content
       @log.puts "Input tokens:    #{response.tokens.input}"
       @log.puts "Output tokens:   #{response.tokens.output}"
       response
+    rescue RubyLLM::BadRequestError => e
+      message = "[#{e.class}] #{e.message}\n" + e.backtrace.map { |line| "    #{line}\n" }.join + e.request_shape.to_s
+      @log.puts message
+      File.write data('log', 'error.log'), "#{DateTime.now.iso8601} #{message}", mode: 'a'
     rescue StandardError => e
       message = "[#{e.class}] #{e.message}\n" + e.backtrace.map { |line| "    #{line}\n" }.join
       @log.puts message

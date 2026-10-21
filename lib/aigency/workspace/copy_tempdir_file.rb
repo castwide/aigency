@@ -5,6 +5,9 @@ require 'fileutils'
 module Aigency
   module Workspace
     class CopyTempdirFile < Tool
+      include Tempdir::Helpers
+      include Workspace::Helpers
+
       desc 'Copy a file from tempdir to workspace'
 
       params do
@@ -14,8 +17,8 @@ module Aigency
 
       def execute(tempdir_source:, workspace_dest:)
         aigent.log.puts "[Workspace::CopyTempdirFile] #{tempdir_source.inspect} #{workspace_dest.inspect}"
-        abs_tempdir = Tempdir::Helpers.expand_in_tempdir(tempdir_source)
-        abs_workspace = Workspace::Helpers.expand_in_workspace(workspace_dest)
+        abs_tempdir = expand_in_tempdir(tempdir_source)
+        abs_workspace = expand_in_workspace(workspace_dest)
         FileUtils.copy_file abs_tempdir, abs_workspace
       rescue StandardError => e
         { success: false, error: "[#{e.class}] #{e.message}"}
