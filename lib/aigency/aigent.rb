@@ -44,7 +44,7 @@ module Aigency
     # @param except [Array<Class<Tool>>] Tools to exclude from this chat
     # @return [RubyLLM::Chat]
     def brief(*extra, except: [])
-      chat = rubyllm_context.chat(provider: :openai).with_thinking
+      chat = rubyllm_context.chat(provider: :openai)
       (tools - except).each { |klass| chat.with_tools(klass.new(self)) }
       chat.with_instructions(build_instructions(extra).join, append: true)
       chat.with_provider_options(max_tokens: max_tokens)
