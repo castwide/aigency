@@ -5,5 +5,10 @@ module Aigency
   #
   class Tool < RubyLLM::Tool
     include Usability
+
+    class << self
+      alias desc description
+      alias params parameters
+    end
   end
 end

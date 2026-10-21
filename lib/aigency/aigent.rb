@@ -156,15 +156,6 @@ module Aigency
 
     # @param plugin [Plugin]
     def boot(plugin)
-      unless plugin.config.empty?
-        config_file = File.absolute_path(File.join('config', "#{plugin.name}.yml"), directory)
-        if File.exist?(config_file)
-          log.puts "File config/#{plugin.name}.yml exists, skipping"
-        else
-          log.puts "Creating config/#{plugin.name}.yml"
-          File.write config_file, plugin.config
-        end
-      end
       plugin.directories.each do |dir|
         absolute = File.absolute_path(dir, directory)
         if File.directory?(absolute)
@@ -172,6 +163,15 @@ module Aigency
         else
           log.puts "Creating #{dir}"
           FileUtils.mkdir_p absolute
+        end
+      end
+      unless plugin.config.empty?
+        config_file = File.absolute_path(File.join('config', "#{plugin.name}.yml"), directory)
+        if File.exist?(config_file)
+          log.puts "File config/#{plugin.name}.yml exists, skipping"
+        else
+          log.puts "Creating config/#{plugin.name}.yml"
+          File.write config_file, plugin.config
         end
       end
       plugin.files.each do |file, content|
@@ -246,8 +246,19 @@ module Aigency
     Plugin.register Plugin.new(
       'aigent',
       tools: [CurrentTime],
-      directories: ['data/chats', 'data/log'],
-      rakefile: File.join(GEM_PATH, 'scaffold', 'aigent', 'aigent.rake')
+      directories: ['config', 'data/chats', 'data/log'],
+      rakefile: File.join(GEM_PATH, 'scaffold', 'aigent', 'aigent.rake'),
+      config: <<~FILE
+        name: Aigent
+        openai_api_base: ${OPENAI_API_BASE}
+        openai_api_key: ${OPENAI_API_KEY}
+        # max_tokens: 65536
+        plugins:
+          # You should only need either a workspace or a sandbox, not both. If you
+          # enable one, it's recommended that you disable the other.
+          # - sandbox
+          - workspace
+      FILE
     )
   end
 end

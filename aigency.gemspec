@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday", "~> 2.14"
   spec.add_dependency "faraday-net_http", "~> 3.4.4"
   spec.add_dependency "fileutils", "~> 1.8"
-  spec.add_dependency "ruby_llm", "~> 1.15"
+  spec.add_dependency "ruby_llm", "~> 2.1"
   spec.add_dependency "thor", "~> 1.5"
 
   spec.add_dependency "rake", "~> 13.0"

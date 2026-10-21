@@ -13,6 +13,7 @@ module Aigency
       end
 
       def execute(tempdir_source:, workspace_dest:)
+        aigent.log.puts "[Workspace::CopyTempdirFile] #{tempdir_source.inspect} #{workspace_dest.inspect}"
         abs_tempdir = Tempdir::Helpers.expand_in_tempdir(tempdir_source)
         abs_workspace = Workspace::Helpers.expand_in_workspace(workspace_dest)
         FileUtils.copy_file abs_tempdir, abs_workspace

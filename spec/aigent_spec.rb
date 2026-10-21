@@ -38,7 +38,6 @@ RSpec.describe Aigency::Aigent do
 
   describe '#setup' do
     it 'creates config files' do
-      skip 'aigent.yml is not a plugin config'
       Dir.mktmpdir do |tmpdir|
         aigent = described_class.new(tmpdir)
         config_file = File.join(tmpdir, 'config', 'aigent.yml')
@@ -93,7 +92,7 @@ RSpec.describe Aigency::Aigent do
 
   describe '#tools' do
     let(:all_tools) {
-      [Aigency::Workspace::Cat, Aigency::Workspace::Cp, Aigency::Workspace::Diff, Aigency::Workspace::Grep, Aigency::Workspace::Ls, Aigency::Workspace::Mkdir, Aigency::Workspace::Mv, Aigency::Workspace::Rm, Aigency::Workspace::Wc, Aigency::Workspace::Write, Aigency::Sandbox::Exec, Aigency::Aigent::CurrentTime]
+      [Aigency::Workspace::Cat, Aigency::Workspace::Cp, Aigency::Workspace::Diff, Aigency::Workspace::Grep, Aigency::Workspace::Ls, Aigency::Workspace::Mkdir, Aigency::Workspace::Mv, Aigency::Workspace::Rm, Aigency::Workspace::Wc, Aigency::Workspace::Write, Aigency::Workspace::CopyTempdirFile, Aigency::Sandbox::Exec, Aigency::Aigent::CurrentTime]
     }
 
     it 'reads tools from plugins' do
